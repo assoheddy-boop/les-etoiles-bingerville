@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { loginErrorFromSearchParams, readLoginErrorMessage } from "@/lib/login-messages";
 
 export function AdminLoginForm({
   usernamePlaceholder,
@@ -17,9 +18,11 @@ export function AdminLoginForm({
   const [pending, setPending] = useState(false);
 
   useEffect(() => {
-    if (new URLSearchParams(window.location.search).get("erreur")) {
-      setError("Identifiants incorrects.");
-    }
+    const message = loginErrorFromSearchParams(
+      new URLSearchParams(window.location.search),
+      "Identifiants incorrects.",
+    );
+    if (message) setError(message);
   }, []);
 
   async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -36,7 +39,7 @@ export function AdminLoginForm({
       }),
     });
     if (!response.ok) {
-      setError("Identifiants incorrects.");
+      setError(await readLoginErrorMessage(response, "Identifiants incorrects."));
       setPending(false);
       return;
     }

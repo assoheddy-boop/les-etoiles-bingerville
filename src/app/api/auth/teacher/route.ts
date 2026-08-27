@@ -1,6 +1,6 @@
 import { teacherDemoHint } from "@/lib/demo-accounts";
 import { demoLoginsAllowed, rejectDemoLoginIfBlocked } from "@/lib/demo-guard";
-import { loginFailure, loginSuccess, readCredentialBody } from "@/lib/login";
+import { loginDemoBlocked, loginFailure, loginSuccess, readCredentialBody } from "@/lib/login";
 import { findTeacherByEmail, readSchoolLife, writeSchoolLife } from "@/lib/school-life";
 import { signSession, TEACHER_COOKIE } from "@/lib/session";
 import { isTeacherControlEnabled, recordTeacherLogin } from "@/lib/teacher-control";
@@ -12,7 +12,7 @@ export async function POST(request: Request) {
   const data = await readSchoolLife();
   const passwordBefore = new Map(data.teachers.map((row) => [row.id, row.password]));
   if (rejectDemoLoginIfBlocked("teacher", { email, password })) {
-    return loginFailure(request, "/espace-enseignants/connexion");
+    return loginDemoBlocked(request, "/espace-enseignants/connexion");
   }
   let teacher = await findTeacherByEmail(email, password, data);
   if (

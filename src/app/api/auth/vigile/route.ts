@@ -1,6 +1,6 @@
 import { isVigileCredentials, vigileDemo } from "@/lib/demo-accounts";
 import { rejectDemoLoginIfBlocked } from "@/lib/demo-guard";
-import { loginFailure, loginSuccess, readCredentialBody } from "@/lib/login";
+import { loginDemoBlocked, loginFailure, loginSuccess, readCredentialBody } from "@/lib/login";
 import { signSession, VIGILE_COOKIE } from "@/lib/session";
 
 export async function POST(request: Request) {
@@ -8,7 +8,7 @@ export async function POST(request: Request) {
   const username = body.username || body.email || body.identifiant || "";
   const password = body.password || "";
   if (rejectDemoLoginIfBlocked("vigile", { username, password })) {
-    return loginFailure(request, "/espace-vigile/connexion");
+    return loginDemoBlocked(request, "/espace-vigile/connexion");
   }
   if (!isVigileCredentials(username, password)) {
     return loginFailure(request, "/espace-vigile/connexion");

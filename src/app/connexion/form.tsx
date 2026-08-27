@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { school } from "@/lib/school";
+import { loginErrorFromSearchParams, readLoginErrorMessage } from "@/lib/login-messages";
 
 export function ParentLoginForm() {
   const router = useRouter();
@@ -10,9 +11,11 @@ export function ParentLoginForm() {
   const [pending, setPending] = useState(false);
 
   useEffect(() => {
-    if (new URLSearchParams(window.location.search).get("erreur")) {
-      setError("Matricule ou mot de passe incorrect. Contactez le secrétariat.");
-    }
+    const message = loginErrorFromSearchParams(
+      new URLSearchParams(window.location.search),
+      "Matricule ou mot de passe incorrect. Contactez le secrétariat.",
+    );
+    if (message) setError(message);
   }, []);
 
   async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -29,7 +32,12 @@ export function ParentLoginForm() {
       }),
     });
     if (!response.ok) {
-      setError("Matricule ou mot de passe incorrect. Contactez le secrétariat.");
+      setError(
+        await readLoginErrorMessage(
+          response,
+          "Matricule ou mot de passe incorrect. Contactez le secrétariat.",
+        ),
+      );
       setPending(false);
       return;
     }

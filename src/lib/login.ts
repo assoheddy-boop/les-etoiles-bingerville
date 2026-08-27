@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { DEMO_BLOCKED_MESSAGE } from "./login-messages";
 import { cookieOptions } from "./session";
 
 export async function readCredentialBody(request: Request): Promise<Record<string, string>> {
@@ -42,9 +43,21 @@ export function loginSuccess(request: Request, nextPath: string, cookieName: str
 
 export function loginFailure(request: Request, loginPath: string) {
   if (!isFormLogin(request)) {
-    return NextResponse.json({ error: "Identifiants invalides" }, { status: 401 });
+    return NextResponse.json({ error: "invalid_credentials" }, { status: 401 });
   }
   const url = new URL(loginPath, request.url);
   url.searchParams.set("erreur", "1");
+  return NextResponse.redirect(url, 303);
+}
+
+export function loginDemoBlocked(request: Request, loginPath: string) {
+  if (!isFormLogin(request)) {
+    return NextResponse.json(
+      { error: "demo_blocked", message: DEMO_BLOCKED_MESSAGE },
+      { status: 403 },
+    );
+  }
+  const url = new URL(loginPath, request.url);
+  url.searchParams.set("erreur", "demo");
   return NextResponse.redirect(url, 303);
 }

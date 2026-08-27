@@ -1,6 +1,6 @@
 import { findStudent } from "@/lib/demo-accounts";
 import { demoLoginsAllowed, isDemoMatricule, rejectDemoLoginIfBlocked } from "@/lib/demo-guard";
-import { loginFailure, loginSuccess, readCredentialBody } from "@/lib/login";
+import { loginDemoBlocked, loginFailure, loginSuccess, readCredentialBody } from "@/lib/login";
 import { findParentLogin, parentOfStudent, readSchoolLife, writeSchoolLife } from "@/lib/school-life";
 import { PARENT_COOKIE, signSession } from "@/lib/session";
 
@@ -11,7 +11,7 @@ export async function POST(request: Request) {
   const data = await readSchoolLife();
   const passwordBefore = new Map(data.parents.map((row) => [row.id, row.password]));
   if (rejectDemoLoginIfBlocked("parent", { matricule, password })) {
-    return loginFailure(request, "/connexion");
+    return loginDemoBlocked(request, "/connexion");
   }
   let result =
     !demoLoginsAllowed() && isDemoMatricule(matricule)
