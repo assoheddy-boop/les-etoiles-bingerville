@@ -55,8 +55,9 @@ yarn-error.log*
 # vercel
 .vercel
 
+# secrets locaux (jamais committer)
+SUPERADMIN_PASSWORD.local.txt
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-
-.vercel

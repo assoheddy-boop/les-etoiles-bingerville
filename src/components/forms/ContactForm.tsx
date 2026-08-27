@@ -34,7 +34,7 @@ export function ContactForm({ kind }: { kind: "contact" | "inscription" }) {
     form.reset();
     setHint(
       payload?.hint ||
-        "Enregistré, l’école vous recontacte. En urgence : contactez le secrétariat (WhatsApp à confirmer).",
+        "Demande enregistrée — le secrétariat vous recontacte. L’e-mail de confirmation peut être retardé si le service n’est pas encore configuré.",
     );
     setStatus("ok");
   }

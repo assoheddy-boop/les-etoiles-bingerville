@@ -19,6 +19,10 @@ Ouvrir [http://localhost:3001](http://localhost:3001) (port 3001 pour ne pas cro
 
 `NEXT_PUBLIC_SITE_URL` (prod) : `https://les-etoiles-bingerville.vercel.app`
 
+## Production
+
+Voir **[PRODUCTION.md](./PRODUCTION.md)** : variables Vercel, onboarding SuperAdmin, Resend, paiements espèces.
+
 ## Comptes de démonstration
 
 **Parent**

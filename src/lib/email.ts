@@ -222,7 +222,7 @@ export function publicMailHint(kind: "contact" | "inscription", result: MailResu
       : `Message enregistré et e-mail envoyé au secrétariat. ${urgency}`;
   }
   if (result.status === "failed") {
-    return `Enregistré, mais l’e-mail n’a pas pu partir. L’école a bien votre demande. ${urgency}`;
+    return `Enregistré, mais l’e-mail automatique n’a pas pu partir (réessayez plus tard ou appelez). L’école a bien votre demande. ${urgency}`;
   }
-  return `Enregistré, e-mail non envoyé (non configuré). L’école vous recontacte. ${urgency}`;
+  return `Enregistré. L’e-mail de confirmation peut être retardé (service non configuré) — le secrétariat vous recontacte. ${urgency}`;
 }

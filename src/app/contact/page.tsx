@@ -11,7 +11,7 @@ export default function ContactPage() {
       <PageHero
         kicker="Bingerville"
         title="Nous trouver, nous écrire"
-        lead="Adjamé-Bingerville, lots 1359 à 1362. Une équipe réelle au bout du fil — téléphone à confirmer."
+        lead="Adjamé-Bingerville, lots 1359 à 1362. Secrétariat joignable par téléphone, e-mail ou WhatsApp."
       />
       <Container className="grid gap-10 py-12 lg:grid-cols-2">
         <div className="space-y-6">
