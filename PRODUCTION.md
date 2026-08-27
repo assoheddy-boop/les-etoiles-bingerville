@@ -15,33 +15,45 @@ Projet Vercel : `assoheddy-boops-projects/les-etoiles-bingerville`
 | `PAYMENTS_DEMO_MODE` | `false` |
 | `ETOILES_DEMO_HINTS` | `false` |
 | `EMAIL_TO_SCHOOL` | `letoiles67@gmail.com` |
-| `RESEND_API_KEY` | **Non configuré** — voir section Resend |
-| `EMAIL_FROM` | **Non configuré** — requis avec Resend |
+| `RESEND_API_KEY` | Configuré (Production, sensible) |
+| `EMAIL_FROM` | `Les Étoiles <onboarding@resend.dev>` (test — voir domaine ci-dessous) |
 | `ANTHROPIC_API_KEY` | Optionnel — chat `/api/ai` (sinon HTTP 503) |
 
-Sans `RESEND_API_KEY` : contact et inscriptions sont **quand même enregistrés** (Blob + inbox admin `/admin/demandes`). L’UI indique que l’e-mail peut être retardé. La carte **E-mails** dans `/admin` et `/super-admin` affiche « Non configuré ».
+Contact et inscriptions sont enregistrés (Blob + inbox admin `/admin/demandes`) **et** les e-mails partent si Resend est configuré. La carte **E-mails** dans `/admin` et `/super-admin` affiche « Configuré » lorsque `RESEND_API_KEY` + `EMAIL_FROM` sont posés.
 
 ## Resend (e-mails transactionnels)
 
-### État actuel
+### État actuel (27 août 2026)
 
-- Aucune clé réutilisable trouvée sur le projet ECEME (`.env.local` sans `RESEND_*`, pas de `.env` commité).
-- Configuration Vercel à faire manuellement (dashboard ou `vercel env add` après `vercel login`).
+- **Configuré** : `RESEND_API_KEY` + `EMAIL_FROM` (`onboarding@resend.dev`) sur Vercel Production, redéployé.
+- `EMAIL_TO_SCHOOL` = `letoiles67@gmail.com` sur Vercel.
+- **Limite test** : avec `onboarding@resend.dev`, Resend ne livre qu’à l’e-mail du compte Resend — pas à `letoiles67@gmail.com` tant qu’un domaine n’est pas vérifié.
+- **Prochaine étape prod** : vérifier un domaine (`letoilesbingerville.ci`) et passer `EMAIL_FROM` à `Les Étoiles <noreply@letoilesbingerville.ci>`.
 
 ### Étapes exactes
 
-1. Créer un compte sur [resend.com](https://resend.com) (ou réutiliser un compte école).
-2. **Domaine d’envoi** (recommandé prod) :
+1. Créer un compte sur [resend.com/signup](https://resend.com/signup) (gratuit : 3 000 e-mails/mois, 100/jour, sans CB).
+2. **Clé API** : Resend → API Keys → Create → permission **Sending access** → copier `re_…`.
+3. **Domaine d’envoi** (recommandé prod) :
    - Resend → Domains → Add domain (ex. `letoilesbingerville.ci` ou sous-domaine `mail.letoilesbingerville.ci`)
    - Ajouter les enregistrements DNS (SPF, DKIM) fournis par Resend
    - Attendre la vérification
-3. **Clé API** : Resend → API Keys → Create → copier la clé `re_…`
-4. **Vercel** → projet `les-etoiles-bingerville` → Settings → Environment Variables → Production :
-   - `RESEND_API_KEY` = `re_…`
-   - `EMAIL_FROM` = `Les Étoiles <noreply@votredomaine.ci>` (domaine vérifié)
-5. **Test seulement** (sans domaine) : `EMAIL_FROM=onboarding@resend.dev` — les e-mails partent **uniquement** vers l’adresse du compte Resend, pas vers les familles.
-6. Redéployer (ou attendre le redeploy auto).
-7. Vérifier : `/admin` → carte « E-mails » = **Configuré** ; envoyer un message test via `/contact`.
+4. **Vercel** → projet `les-etoiles-bingerville` → Settings → Environment Variables → **Production** :
+   - `RESEND_API_KEY` = `re_…` (sensible)
+   - `EMAIL_FROM` = `Les Étoiles <noreply@letoilesbingerville.ci>` (domaine vérifié) **ou** pour test immédiat : `Les Étoiles <onboarding@resend.dev>`
+5. **Test sans domaine** : avec `onboarding@resend.dev`, Resend ne livre qu’à l’e-mail du compte Resend — **pas** à `letoiles67@gmail.com` tant que le domaine n’est pas vérifié. Pour tester vers le secrétariat, vérifier un domaine ou créer le compte Resend avec `letoiles67@gmail.com`.
+6. Redéployer production (Deployments → Redeploy).
+7. Vérifier : `/admin` → carte « E-mails » = **Configuré** ; formulaire test sur `/contact`.
+
+**CLI** (après `vercel login`) :
+
+```powershell
+cd C:\Users\assoh\Projects\les-etoiles-bingerville
+$env:NODE_OPTIONS="--use-system-ca"
+npx vercel env add RESEND_API_KEY production --sensitive --value "re_..." --yes
+npx vercel env add EMAIL_FROM production --value "Les Étoiles <onboarding@resend.dev>" --yes
+npx vercel --prod
+```
 
 ### Routes qui envoient si Resend est configuré
 
