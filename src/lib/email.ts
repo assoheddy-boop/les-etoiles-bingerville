@@ -5,6 +5,9 @@ import { school } from "./school";
 const SEND_TIMEOUT_MS = 8_000;
 const IDEMPOTENCY_TTL_MS = 30_000;
 const DEV_FROM_FALLBACK = "Les Étoiles <beth.t@example.com>";
+const DEFAULT_FROM_NAME = "Les Étoiles";
+
+export type ParsedFrom = { name: string; email: string };
 
 export type MailTag =
   | "contact"
@@ -52,24 +55,52 @@ function envFrom() {
   return process.env.EMAIL_FROM?.trim() || "";
 }
 
+/** Parse « Nom <adresse@domaine> », « "Nom" <adresse> » ou une adresse seule. */
+export function parseEmailFrom(raw: string): ParsedFrom | null {
+  const trimmed = raw.trim();
+  if (!trimmed) return null;
+
+  const angle = trimmed.match(/^(.+?)\s*<([^>]+)>$/);
+  if (angle) {
+    const name = angle[1].replace(/^["']|["']$/g, "").trim();
+    const email = angle[2].trim();
+    if (!isValidEmail(email)) return null;
+    return { name: name || DEFAULT_FROM_NAME, email };
+  }
+
+  if (isValidEmail(trimmed)) {
+    return { name: DEFAULT_FROM_NAME, email: trimmed };
+  }
+  return null;
+}
+
+export function formatEmailFrom(parsed: ParsedFrom) {
+  return `${parsed.name} <${parsed.email}>`;
+}
+
+export function normalizeEmailFrom(raw: string) {
+  const parsed = parseEmailFrom(raw);
+  return parsed ? formatEmailFrom(parsed) : null;
+}
+
 export function schoolInbox() {
   return process.env.EMAIL_TO_SCHOOL?.trim() || school.email;
 }
 
 export function fromAddress(): string | null {
   const configured = envFrom();
-  if (configured) return configured;
+  if (configured) return normalizeEmailFrom(configured);
   if (isProductionRuntime()) return null;
   return DEV_FROM_FALLBACK;
 }
 
 export function emailStatus(): EmailStatus {
   const hasApiKey = Boolean(apiKey());
-  const hasFrom = Boolean(envFrom());
+  const hasFrom = Boolean(fromAddress());
   return {
     hasApiKey,
     hasFrom,
-    configured: Boolean(hasApiKey && fromAddress()),
+    configured: Boolean(hasApiKey && hasFrom),
   };
 }
 

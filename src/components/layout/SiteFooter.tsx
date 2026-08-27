@@ -77,9 +77,17 @@ export function SiteFooter() {
         <p>
           © {new Date().getFullYear()} {school.legalName} — Abidjan, Bingerville, Adjamé.
         </p>
+        <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1">
         <Link href="/mentions-legales" className="inline-flex min-h-10 items-center hover:text-white hover:underline">
           Mentions légales
         </Link>
+        <Link
+          href="/politique-confidentialite"
+          className="inline-flex min-h-10 items-center hover:text-white hover:underline"
+        >
+          Confidentialité
+        </Link>
+        </div>
       </div>
     </footer>
   );

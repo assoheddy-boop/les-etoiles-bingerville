@@ -1,4 +1,5 @@
 import { findStaffDemo } from "@/lib/demo-accounts";
+import { rejectDemoLoginIfBlocked } from "@/lib/demo-guard";
 import { loginFailure, loginSuccess, readCredentialBody } from "@/lib/login";
 import { ADMIN_COOKIE, SUPERADMIN_COOKIE, signSession } from "@/lib/session";
 import { trySuperAdminLogin } from "@/lib/superadmin";
@@ -11,6 +12,9 @@ export async function POST(request: Request) {
   if (superadmin) {
     const token = await signSession(superadmin);
     return loginSuccess(request, "/super-admin", SUPERADMIN_COOKIE, token);
+  }
+  if (rejectDemoLoginIfBlocked("staff", { username, password })) {
+    return loginFailure(request, "/admin/connexion");
   }
   const account = findStaffDemo(username, password);
   if (!account) {

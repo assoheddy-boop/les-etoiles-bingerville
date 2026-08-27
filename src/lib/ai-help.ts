@@ -25,6 +25,7 @@ export const helpPages: HelpPage[] = [
   { path: "/contact", title: "Contact", blurb: "Formulaire, téléphone, plan. E-mail au secrétariat si Resend est configuré, sinon la demande est quand même enregistrée.", roles: ["all"] },
   { path: "/inscriptions", title: "Inscriptions", blurb: "Demande d’inscription en ligne (pas de paiement en ligne). Accusé e-mail au parent si Resend est configuré.", roles: ["all"] },
   { path: "/mentions-legales", title: "Mentions légales", blurb: "Éditeur et données.", roles: ["all"] },
+  { path: "/politique-confidentialite", title: "Confidentialité", blurb: "Traitement des données personnelles.", roles: ["all"] },
   { path: "/connexion", title: "Connexion parents", blurb: "Espace familles (matricule).", roles: ["all"] },
   { path: "/espace-enseignants/connexion", title: "Connexion enseignants", blurb: "Espace professeurs.", roles: ["all"] },
   { path: "/espace-vigile/connexion", title: "Connexion vigile", blurb: "Accès grille / sorties.", roles: ["all"] },

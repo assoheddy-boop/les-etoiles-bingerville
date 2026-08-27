@@ -1,8 +1,9 @@
 import { Card } from "@/components/school/AdminUi";
-import { emailStatus } from "@/lib/email";
+import { emailStatus, fromAddress } from "@/lib/email";
 
 export function EmailStatusCard() {
   const status = emailStatus();
+  const from = fromAddress();
   return (
     <Card title="E-mails">
       <p className={`text-2xl font-semibold ${status.configured ? "text-green-deep" : "text-terracotta"}`}>
@@ -13,6 +14,11 @@ export function EmailStatusCard() {
         {" · "}
         expéditeur {status.hasFrom ? "défini" : "manquant"}
       </p>
+      {from ? (
+        <p className="mt-2 text-xs text-muted">
+          Expéditeur : <span className="font-medium text-ink">{from}</span>
+        </p>
+      ) : null}
       {!status.configured ? (
         <p className="mt-2 text-xs text-muted">
           Sans clé, les demandes sont quand même enregistrées. Posez RESEND_API_KEY et EMAIL_FROM sur Vercel.

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Container, PageHero, Prose } from "@/components/ui/Page";
 import { school } from "@/lib/school";
 import { siteUrl } from "@/lib/seo";
@@ -51,6 +52,13 @@ export default function MentionsLegalesPage() {
           </p>
 
           <h2 className="font-display text-2xl text-green-deep">Données personnelles et confidentialité</h2>
+          <p>
+            Pour le détail des traitements, voir la{" "}
+            <Link href="/politique-confidentialite" className="font-semibold text-green hover:underline">
+              politique de confidentialité
+            </Link>
+            . Résumé :
+          </p>
           <p>
             Les informations collectées via les formulaires (inscription, contact, messages) sont
             traitées par {school.legalName} pour la gestion scolaire, la relation avec les familles

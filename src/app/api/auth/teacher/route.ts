@@ -1,4 +1,5 @@
 import { teacherDemoHint } from "@/lib/demo-accounts";
+import { demoLoginsAllowed, rejectDemoLoginIfBlocked } from "@/lib/demo-guard";
 import { loginFailure, loginSuccess, readCredentialBody } from "@/lib/login";
 import { findTeacherByEmail, readSchoolLife, writeSchoolLife } from "@/lib/school-life";
 import { signSession, TEACHER_COOKIE } from "@/lib/session";
@@ -10,8 +11,12 @@ export async function POST(request: Request) {
   const password = body.password || "";
   const data = await readSchoolLife();
   const passwordBefore = new Map(data.teachers.map((row) => [row.id, row.password]));
+  if (rejectDemoLoginIfBlocked("teacher", { email, password })) {
+    return loginFailure(request, "/espace-enseignants/connexion");
+  }
   let teacher = await findTeacherByEmail(email, password, data);
   if (
+    demoLoginsAllowed() &&
     !teacher &&
     email.trim().toLowerCase() === teacherDemoHint.email &&
     password === teacherDemoHint.password

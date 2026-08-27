@@ -32,13 +32,14 @@ export const mainNav: NavItem[] = [
   {
     href: "/informations",
     label: "Infos",
-    match: ["/informations", "/actualites", "/contact", "/mentions-legales"],
+    match: ["/informations", "/actualites", "/contact", "/mentions-legales", "/politique-confidentialite"],
     children: [
       { href: "/informations", label: "Informations" },
       { href: "/actualites", label: "Actualités" },
       { href: "/informations/objets-perdus", label: "Objets perdus" },
       { href: "/contact", label: "Contact" },
       { href: "/mentions-legales", label: "Mentions légales" },
+      { href: "/politique-confidentialite", label: "Confidentialité" },
     ],
   },
 ];
@@ -76,6 +77,7 @@ export const footerGroups: { title: string; links: NavChild[] }[] = [
       { href: "/inscriptions", label: "Inscriptions" },
       { href: "/contact", label: "Contact & plan" },
       { href: "/mentions-legales", label: "Mentions légales" },
+      { href: "/politique-confidentialite", label: "Confidentialité" },
     ],
   },
   {

@@ -14,6 +14,7 @@ Projet Vercel : `assoheddy-boops-projects/les-etoiles-bingerville`
 | `SUPERADMIN_PASSWORD` | Défini sur Vercel |
 | `PAYMENTS_DEMO_MODE` | `false` |
 | `ETOILES_DEMO_HINTS` | `false` |
+| `ETOILES_DEMO_MODE` | non défini (= connexions démo **bloquées** en prod Vercel) |
 | `EMAIL_TO_SCHOOL` | `letoiles67@gmail.com` |
 | `RESEND_API_KEY` | Configuré (Production, sensible) |
 | `EMAIL_FROM` | `Les Étoiles <onboarding@resend.dev>` (test — voir domaine ci-dessous) |
@@ -29,6 +30,7 @@ Contact et inscriptions sont enregistrés (Blob + inbox admin `/admin/demandes`)
 - `EMAIL_TO_SCHOOL` = `letoiles67@gmail.com` sur Vercel.
 - **Limite test** : avec `onboarding@resend.dev`, Resend ne livre qu’à l’e-mail du compte Resend — pas à `letoiles67@gmail.com` tant qu’un domaine n’est pas vérifié.
 - **Prochaine étape prod** : vérifier un domaine (`letoilesbingerville.ci`) et passer `EMAIL_FROM` à `Les Étoiles <noreply@letoilesbingerville.ci>`.
+- **Guide détaillé DNS** : [RESEND_DOMAIN.md](./RESEND_DOMAIN.md)
 
 ### Étapes exactes
 
@@ -96,6 +98,23 @@ Documentation DNS uniquement — le domaine n’est pas encore branché sur Verc
 - Variable : `ANTHROPIC_API_KEY` (serveur uniquement, voir `.env.example`).
 - Sans clé : le chat affiche « Assistant non configuré » (`/api/ai` → 503).
 - Ne jamais exposer en `NEXT_PUBLIC_*`.
+
+## Comptes de démonstration (sécurité production)
+
+En production Vercel, les identifiants de démo codés en dur sont **refusés** par défaut :
+
+| Portail | Identifiants bloqués |
+|---------|---------------------|
+| Parents | `ETOILES-DEMO-001` / `002` et mot de passe `Parent2026!` |
+| Direction | `admin`, `directeur`, `viescolaire` (mots de passe démo) |
+| Enseignants | `enseignant@lesetoiles.ci` / `Enseignant2026!` |
+| Vigile | `vigile` / `Vigile2026!` |
+
+- `ETOILES_DEMO_HINTS=false` masque les indices sur les pages de connexion (déjà en prod).
+- `ETOILES_DEMO_MODE=true` (ou `DEMO_MODE=true`) réautorise les connexions démo — **uniquement pour une démo contrôlée**, pas pour de vraies familles.
+- Le SuperAdmin (`assoheddy@gmail.com` + `SUPERADMIN_PASSWORD`) n’est pas affecté.
+
+Implémentation : `src/lib/demo-guard.ts` + routes `src/app/api/auth/*/route.ts`.
 
 ## Paiements en ligne
 

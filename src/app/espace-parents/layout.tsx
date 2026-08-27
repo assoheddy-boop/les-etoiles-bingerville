@@ -4,6 +4,7 @@ import { ModuleBlocked } from "@/components/school/ModuleBlocked";
 import { parentActorId, readSchoolLife, unreadCount } from "@/lib/school-life";
 import { filterNavByModules, parentPortalAllowed } from "@/lib/module-control";
 import { parentConsoleNav } from "@/lib/nav";
+import { school } from "@/lib/school";
 
 export default async function EspaceLayout({ children }: { children: React.ReactNode }) {
   const session = await requireParent();
@@ -19,8 +20,8 @@ export default async function EspaceLayout({ children }: { children: React.React
           variant="light"
         />
         <ModuleBlocked
-          title="Espace parents inactif"
-          lead="Votre accès n’est pas activé pour le moment. Contactez le secrétariat Les Étoiles (espèces / inscription). Les familles démo ETOILES-DEMO-001 et ETOILES-DEMO-002 restent ouvertes tant que le SuperAdmin ne les désactive pas."
+          title="Espace parents non activé"
+          lead={`Votre accès en ligne n’est pas encore ouvert pour cette famille. Pour l’activer après inscription ou réinscription, contactez le secrétariat Les Étoiles : ${school.phones[0].display} ou ${school.email}.`}
         />
       </div>
     );

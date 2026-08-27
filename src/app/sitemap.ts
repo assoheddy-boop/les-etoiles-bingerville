@@ -18,6 +18,7 @@ const paths = [
   "/actualites",
   "/contact",
   "/mentions-legales",
+  "/politique-confidentialite",
   "/connexion",
   "/espace-enseignants/connexion",
   "/espace-vigile/connexion",
