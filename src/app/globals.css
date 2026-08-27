@@ -1,18 +1,24 @@
 @import "tailwindcss";
 
 :root {
-  --ink: #1a1714;
-  --muted: #5c5349;
-  --paper: #fbf7f1;
-  --paper-2: #f3ebe0;
-  --line: #e4d8c6;
-  --green: #1a4f8b;
-  --green-deep: #12305c;
-  --green-soft: #e8eef6;
-  --terracotta: #c41e3a;
-  --terracotta-soft: #f8e4e6;
-  --gold: #c9a227;
+  --ink: #2d2a26;
+  --muted: #6b6560;
+  --paper: #fff9f3;
+  --paper-2: #fef3e8;
+  --line: #f0e4d8;
+  --green: #5b8fc7;
+  --green-deep: #3d6a9e;
+  --green-soft: #e8f4fc;
+  --terracotta: #e8879a;
+  --terracotta-soft: #fde8ee;
+  --gold: #e8b84a;
   --white: #fffdf9;
+  --sky: #b8dff5;
+  --lavender: #e8ddf5;
+  --mint: #d4f0e8;
+  --peach: #ffe8d6;
+  --coral: #f4a5b8;
+  --coral-deep: #d97a8f;
 }
 
 @theme inline {
@@ -28,8 +34,192 @@
   --color-terracotta-soft: var(--terracotta-soft);
   --color-gold: var(--gold);
   --color-white: var(--white);
+  --color-sky: var(--sky);
+  --color-lavender: var(--lavender);
+  --color-mint: var(--mint);
+  --color-peach: var(--peach);
+  --color-coral: var(--coral);
+  --color-coral-deep: var(--coral-deep);
   --font-sans: "Segoe UI", system-ui, -apple-system, sans-serif;
   --font-display: Georgia, "Times New Roman", serif;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-12px) rotate(6deg);
+  }
+}
+
+@keyframes drift {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(18px);
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes gentle-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.04);
+  }
+}
+
+.animate-float {
+  animation: float 5.5s ease-in-out infinite;
+}
+
+.animate-float-delay {
+  animation: float 6.2s ease-in-out infinite 1.2s;
+}
+
+.animate-float-slow {
+  animation: float 7s ease-in-out infinite 0.6s;
+}
+
+.animate-drift {
+  animation: drift 14s ease-in-out infinite;
+}
+
+.animate-drift-reverse {
+  animation: drift 16s ease-in-out infinite reverse;
+}
+
+.animate-fade-up {
+  animation: fade-up 0.75s ease-out both;
+}
+
+.animate-fade-up-delay {
+  animation: fade-up 0.85s ease-out 0.15s both;
+}
+
+.animate-fade-up-stagger {
+  animation: fade-up 0.7s ease-out both;
+}
+
+.animate-gentle-pulse {
+  animation: gentle-pulse 3s ease-in-out infinite;
+}
+
+.home-marquee-track {
+  animation: marquee 32s linear infinite;
+  width: max-content;
+}
+
+.home-marquee-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.home-blob {
+  filter: blur(48px);
+}
+
+.home-blob-sky {
+  background: var(--sky);
+}
+
+.home-blob-mint {
+  background: var(--mint);
+}
+
+.home-blob-peach {
+  background: var(--peach);
+}
+
+.home-blob-lavender {
+  background: var(--lavender);
+}
+
+.home-card-hover {
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease,
+    border-color 0.35s ease;
+}
+
+.home-card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(61, 106, 158, 0.12);
+}
+
+.home-activity-card {
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.home-activity-card:hover {
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 16px 40px rgba(61, 106, 158, 0.14);
+}
+
+.home-activity-card:hover img {
+  transform: scale(1.05);
+}
+
+.home-activities-section {
+  background: linear-gradient(
+    165deg,
+    color-mix(in srgb, var(--lavender) 35%, var(--paper)) 0%,
+    var(--paper) 35%,
+    color-mix(in srgb, var(--mint) 30%, var(--paper-2)) 70%,
+    color-mix(in srgb, var(--peach) 25%, var(--paper)) 100%
+  );
+}
+
+.home-activities-cycle {
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.home-activities-cycle:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(61, 106, 158, 0.1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-up,
+  .animate-fade-up-delay,
+  .animate-fade-up-stagger,
+  .home-activity-card,
+  .home-activities-cycle {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .home-activity-card:hover {
+    transform: none;
+  }
 }
 
 html {
@@ -78,6 +268,6 @@ button:focus-visible,
 input:focus-visible,
 select:focus-visible,
 textarea:focus-visible {
-  outline: 2px solid var(--terracotta);
+  outline: 2px solid var(--coral);
   outline-offset: 3px;
 }

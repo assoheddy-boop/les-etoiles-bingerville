@@ -2,9 +2,9 @@ export const school = {
   name: "Groupe scolaire Les Étoiles de Bingerville",
   shortName: "Les Étoiles",
   legalName: "Groupe scolaire Les Étoiles de Bingerville SARL",
-  tagline: "Grandir, briller, exceller.",
+  tagline: "Grandir en douceur, briller chaque jour.",
   description:
-    "Groupe scolaire à Bingerville — Adjamé-Bingerville : garderie, maternelle et primaire. Établissement privé constitué en 2021, campus de 16 classes. Agréments MEN à confirmer.",
+    "Garderie, maternelle et primaire à Bingerville — Adjamé-Bingerville. Un campus chaleureux pour les tout-petits et les enfants, de 3 mois au CM2.",
   neighborhood: "Adjamé-Bingerville",
   city: "Bingerville",
   region: "Abidjan",
@@ -16,19 +16,20 @@ export const school = {
   phones: [
     {
       label: "Mobile / WhatsApp",
-      display: "À confirmer",
-      href: "tel:+2250000000000",
-      e164: "2250000000000",
+      display: "+225 07 06 06 96 67",
+      href: "tel:+2250706069667",
+      e164: "2250706069667",
     },
     {
       label: "Fixe",
-      display: "À confirmer",
-      href: "tel:+2250000000000",
-      e164: "2250000000000",
+      display: "+225 07 06 06 96 67",
+      href: "tel:+2250706069667",
+      e164: "2250706069667",
     },
   ],
-  email: "contact@lesetoilesbingerville.ci",
-  facebook: "",
+  email: "letoiles67@gmail.com",
+  facebook:
+    "https://www.facebook.com/p/Groupe-Scolaire-les-Etoiles-de-Bingerville-61551554664090/",
   website: "https://les-etoiles-bingerville.vercel.app",
   mapsQuery: "Groupe scolaire Les Étoiles Adjamé-Bingerville Bingerville",
   mapsUrl:
@@ -48,6 +49,12 @@ export const school = {
 } as const;
 
 export const menApprovals = [
+  {
+    cycle: "Garderie",
+    schoolName: "Garderie Les Étoiles de Bingerville",
+    decision: "À confirmer (MENA / DEEP) — garderie",
+    date: "À confirmer",
+  },
   {
     cycle: "Maternelle",
     schoolName: "Maternelle Les Étoiles de Bingerville",

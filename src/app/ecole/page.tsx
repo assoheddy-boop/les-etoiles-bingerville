@@ -14,7 +14,7 @@ export default function EcolePage() {
       <PageHero
         kicker="L’école"
         title="Qui sommes-nous ?"
-        lead="Un groupe scolaire de Bingerville, pensé pour les familles d’Adjamé-Bingerville et des communes voisines."
+        lead="Un groupe scolaire chaleureux à Bingerville — garderie, maternelle et primaire pour les familles d'Adjamé-Bingerville."
       />
       <Container className="grid gap-8 py-12 md:grid-cols-3">
         <article className="md:col-span-2 space-y-5 text-lg leading-relaxed text-ink/90">

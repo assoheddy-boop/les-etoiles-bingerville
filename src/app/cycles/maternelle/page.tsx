@@ -5,9 +5,9 @@ import type { Metadata } from "next";
 
 const nav = [
   { href: "/cycles", label: "Vue d’ensemble" },
+  { href: "/cycles/garderie", label: "Garderie" },
   { href: "/cycles/maternelle", label: "Maternelle" },
   { href: "/cycles/primaire", label: "Primaire" },
-  { href: "/cycles/secondaire", label: "Secondaire" },
 ];
 
 export const metadata: Metadata = { title: "Maternelle — Les Étoiles" };
@@ -19,21 +19,25 @@ export default function MaternellePage() {
       <PageHero
         kicker="Maternelle"
         title="Maternelle Les Étoiles"
-        lead="Garderie, petite, moyenne et grande sections. Agrément MEN à confirmer auprès de la direction."
+        lead="Petite, moyenne et grande sections : éveil joyeux, langage et premiers apprentissages en douceur."
       />
       <Container className="max-w-3xl space-y-6 py-12">
         <Prose>
           <p>
-            La maternelle pose les bases : langage, vie en groupe, motricité, éveil scientifique et
-            artistique. Les classes sont organisées en petite, moyenne et grande sections.
+            La maternelle accueille les enfants de 3 à 5 ans dans un cadre coloré et rassurant.
+            Langage, motricité, vie en groupe, arts et éveil scientifique se mêlent à des routines
+            claires que les tout-petits adorent.
           </p>
           <p>
-            Les familles sont associées dès la rentrée : horaires, cantine, et suivi des premiers
-            apprentissages. Pour une visite ou une inscription, le secrétariat répond sous 24 h les
-            jours ouvrés.
+            Les familles sont associées dès la rentrée : horaires, cantine, sorties et suivi des
+            premiers apprentissages. Pour une visite ou une inscription, l&apos;équipe répond sous 24 h
+            les jours ouvrés.
           </p>
         </Prose>
-        <Link href="/inscriptions" className="inline-flex rounded-full bg-terracotta px-5 py-3 font-semibold text-white">
+        <Link
+          href="/inscriptions"
+          className="inline-flex rounded-full bg-coral px-5 py-3 font-semibold text-white hover:bg-coral-deep"
+        >
           Demander une inscription
         </Link>
       </Container>

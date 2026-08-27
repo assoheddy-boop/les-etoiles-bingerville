@@ -61,13 +61,13 @@ export const activities = [
   },
 ] as const;
 
-/** Photo réelle de l’enseigne, cérémonie de septembre 2023 (FratMat). */
+/** Photo de couverture — page Facebook officielle (avril 2024). */
 export const heroImage = {
-  src: "/images/fratmat-campus.jpg",
-  alt: "Enseigne et équipe du Groupe scolaire Les Étoiles, Adjamé-Bingerville — septembre 2023",
+  src: "/images/facebook/cover-campus.jpg",
+  alt: "Campus du Groupe scolaire Les Étoiles de Bingerville — photo Facebook officielle",
 } as const;
 
 export const campusEntranceImage = {
-  src: "/images/campus-enfants.jpg",
-  alt: "Enfants africains à la fenêtre d’une école — illustration Unsplash (bill wegener)",
+  src: "/images/facebook/rentree-03.jpg",
+  alt: "Cour et espaces de jeux — photo Facebook Les Étoiles",
 } as const;
