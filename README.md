@@ -21,11 +21,14 @@ Ouvrir [http://localhost:3001](http://localhost:3001) (port 3001 pour ne pas cro
 
 ## Production
 
-Voir **[PRODUCTION.md](./PRODUCTION.md)** : variables Vercel, onboarding SuperAdmin, Resend, paiements espèces.
+Voir **[PRODUCTION.md](./PRODUCTION.md)** : variables Vercel, Resend, domaine DNS, paiements espèces.  
+Pilote premières familles : **[PILOT.md](./PILOT.md)**.
 
-## Comptes de démonstration
+## Comptes de démonstration (ne pas utiliser en production)
 
-**Parent**
+> **Démo uniquement** — ces matricules servent aux tests et démos. Ne les attribuez pas à de vraies familles. En production, `ETOILES_DEMO_HINTS=false` masque les identifiants sur `/connexion`.
+
+**Parent (démo)**
 - Matricule `ETOILES-DEMO-001` (Aïcha Coulibaly) ou `ETOILES-DEMO-002` (Koffi N’Guessan)
 - Mot de passe `Parent2026!`
 

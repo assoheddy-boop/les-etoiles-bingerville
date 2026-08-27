@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { EditorialNotice } from "@/components/school/EditorialNotice";
 import { Container, PageHero } from "@/components/ui/Page";
 import { readCms } from "@/lib/cms";
 import { school } from "@/lib/school";
@@ -17,7 +18,14 @@ export default async function InformationsPage() {
   return (
     <>
       <PageHero kicker="Pratique" title={cms.informations.title} lead={cms.informations.intro} />
-      <Container className="grid gap-4 py-12 md:grid-cols-2">
+      <Container className="pb-6 pt-8">
+        <EditorialNotice>
+          Tarifs à confirmer — contactez le secrétariat ({school.email}, {school.phones[0].display}) pour les
+          montants d’inscription, mensualités, cantine et transport. Les montants publiés ici le seront dès
+          validation par la direction.
+        </EditorialNotice>
+      </Container>
+      <Container className="grid gap-4 pb-12 md:grid-cols-2">
           {cms.informations.items.map((item) => (
           <article key={item.title} className="rounded-3xl border border-line bg-white p-6">
             <h2 className="font-display text-2xl text-green-deep">{item.title}</h2>

@@ -1,3 +1,4 @@
+import { EditorialNotice } from "@/components/school/EditorialNotice";
 import { Container, PageHero } from "@/components/ui/Page";
 import { menApprovals, school } from "@/lib/school";
 import type { Metadata } from "next";
@@ -14,7 +15,13 @@ export default function AgrementsPage() {
         title="Agréments du Ministère de l’Éducation nationale"
         lead="Les familles peuvent vérifier le cadre légal de l’établissement. Les copies des décisions sont consultables au secrétariat."
       />
-      <Container className="grid gap-6 py-12 md:grid-cols-2">
+      <Container className="py-8">
+        <EditorialNotice>
+          Numéros de décision MENA / DEEP à confirmer avec la direction — les champs ci-dessous sont des
+          placeholders. Les copies officielles sont consultables au secrétariat dès transmission.
+        </EditorialNotice>
+      </Container>
+      <Container className="grid gap-6 pb-12 md:grid-cols-2">
         {menApprovals.map((item) => (
           <article key={item.cycle} className="rounded-3xl border border-line bg-white p-8 shadow-sm">
             <p className="text-sm font-semibold uppercase tracking-widest text-terracotta">{item.cycle}</p>
