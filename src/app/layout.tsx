@@ -7,6 +7,7 @@ import { SkipLink } from "@/components/layout/SkipLink";
 import { ChatWidget } from "@/components/layout/ChatWidget";
 import { WhatsAppButton } from "@/components/layout/WhatsAppButton";
 import { school } from "@/lib/school";
+import { heroImage } from "@/lib/activities";
 import { siteUrl } from "@/lib/seo";
 import "./globals.css";
 
@@ -25,6 +26,21 @@ export const metadata: Metadata = {
     locale: "fr_CI",
     type: "website",
     siteName: school.name,
+    url: siteUrl,
+    images: [
+      {
+        url: heroImage.src,
+        width: 1200,
+        height: 630,
+        alt: heroImage.alt,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${school.name} — Bingerville`,
+    description: school.description,
+    images: [heroImage.src],
   },
 };
 

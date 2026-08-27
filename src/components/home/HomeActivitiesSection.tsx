@@ -15,7 +15,7 @@ export function HomeActivitiesSection() {
   return (
     <section
       id="activites"
-      className="home-activities-section relative scroll-mt-24 overflow-hidden py-16 md:py-24"
+      className="home-activities-section relative scroll-mt-24 overflow-hidden py-12 sm:py-16 md:py-24"
     >
       <div className="pointer-events-none absolute inset-0" aria-hidden>
         <span className="home-blob home-blob-lavender absolute -left-20 top-10 h-64 w-64 rounded-full opacity-60" />
@@ -60,7 +60,7 @@ export function HomeActivitiesSection() {
           </p>
         </div>
 
-        <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-5 lg:grid-cols-4 lg:gap-5">
+        <div className="mt-8 grid grid-cols-1 gap-5 sm:mt-12 sm:grid-cols-2 sm:gap-5 lg:grid-cols-4 lg:gap-5">
           {homeActivities.map((activity, i) => (
             <article
               key={activity.slug}

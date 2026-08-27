@@ -62,7 +62,7 @@ const dayRhythm = [
   { time: "7h30", emoji: "☀️", label: "Accueil chaleureux", detail: "Bonjour, câlin, rituel du matin et jeux libres." },
   { time: "10h", emoji: "🎨", label: "Ateliers & jeux", detail: "Peinture, motricité, langage, musique ou sortie." },
   { time: "12h", emoji: "🍎", label: "Repas & repos", detail: "Cantine ou collation, puis temps calme adapté à l’âge." },
-  { time: "15h", emoji: "🏃", label: "Jeux & activités", detail: "Cour, natation, anglais, danse — selon le cycle." },
+  { time: "15h", emoji: "🏃", label: "Jeux & activités", detail: "Cour, sport, musique ou ateliers créatifs — selon le cycle." },
   { time: "16h30", emoji: "🌙", label: "Au revoir", detail: "Retour serein aux familles, avec le sourire." },
 ];
 
@@ -87,7 +87,7 @@ export default async function HomePage() {
   return (
     <>
       {/* 1. Hero immersif */}
-      <section className="relative min-h-[78vh] overflow-hidden bg-gradient-to-br from-sky/30 via-paper to-peach/40 md:min-h-[85vh]">
+      <section className="relative min-h-[68vh] overflow-hidden bg-gradient-to-br from-sky/30 via-paper to-peach/40 sm:min-h-[72vh] md:min-h-[85vh]">
         <HomeSky />
         <Image
           src={heroImage.src}
@@ -99,7 +99,7 @@ export default async function HomePage() {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-paper via-paper/70 to-transparent" />
 
-        <Container className="relative grid gap-10 py-14 md:grid-cols-[1.1fr_0.9fr] md:items-center md:py-20">
+        <Container className="relative grid gap-8 py-10 sm:gap-10 sm:py-12 md:grid-cols-[1.1fr_0.9fr] md:items-center md:py-20">
           <div className="animate-fade-up">
             <p className="inline-flex items-center gap-2 rounded-full bg-white/80 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-green-deep shadow-sm">
               <span className="animate-gentle-pulse">★</span>
@@ -120,7 +120,7 @@ export default async function HomePage() {
               Jeux, routines rassurantes, ateliers joyeux et espaces numériques pour les familles —
               sans stress, avec une équipe bienveillante.
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
+            <div className="mt-6 flex flex-col gap-3 sm:mt-8 sm:flex-row sm:flex-wrap">
               <a
                 href="#cycles"
                 className="inline-flex min-h-12 items-center justify-center rounded-full bg-coral px-6 py-3 font-semibold text-white shadow-md shadow-coral/25 transition hover:bg-coral-deep hover:shadow-lg"

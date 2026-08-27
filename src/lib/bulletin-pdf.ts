@@ -207,7 +207,6 @@ export async function buildBulletinPdf(input: {
   y += headerH;
 
   let totalCoef = 0;
-  let totalWeighted = 0;
   rows.forEach((row, index) => {
     const cells = [
       row.subject,
@@ -224,7 +223,6 @@ export async function buildBulletinPdf(input: {
       cx += col.width;
     });
     totalCoef += row.coef;
-    totalWeighted += row.weighted;
     y += rowH;
     if (index < rows.length - 1) drawHLine(ctx.page, PAGE_MARGIN, PAGE_MARGIN + CONTENT_W, y);
   });

@@ -1,65 +1,36 @@
-export const activities = [
-  {
-    slug: "natation",
-    emoji: "🏊",
-    title: "Natation",
-    punchline: "Maîtriser l’eau, grandir en confiance",
-    summary:
-      "À la piscine, les enfants apprennent à nager, à se dépasser et à respecter les règles de sécurité — dès le plus jeune âge.",
-    details:
-      "L’atelier natation développe endurance, coordination et confiance. Encadré par des éducateurs, il s’adresse aux cycles maternelle et primaire, avec une progression adaptée au niveau de chacun.",
-    image: "/images/activites/natation.jpg",
-    imageAlt: "Bassin de natation — illustration d’atelier (photo libre, pas le campus)",
-  },
-  {
-    slug: "robotique",
-    emoji: "🤖",
-    title: "Robotique",
-    punchline: "Développer la créativité par la robotique",
-    summary:
-      "Construire, programmer, expérimenter : un atelier STEM pour apprendre en faisant, et aimer les sciences.",
-    details:
-      "Les élèves manipulent robots et kits éducatifs, travaillent en équipe et découvrent la logique, le raisonnement et la créativité. Un pont concret vers les métiers de demain, sans jargon inutile.",
-    image: "/images/activites/robotique.jpg",
-    imageAlt: "Élèves africains en uniforme, en classe — illustration Pexels",
-  },
-  {
-    slug: "anglais",
-    emoji: "🇬🇧",
-    title: "Anglais",
-    punchline: "Parler le monde dès le plus jeune âge",
-    summary:
-      "Des cours interactifs pour oser s’exprimer : jeux, chansons, dialogues — l’anglais comme une langue vivante.",
-    details:
-      "L’anglais aux Étoiles n’est pas une liste de mots à reciter. Les enfants parlent, écoutent, jouent. L’objectif : une oreille habituée et le plaisir de communiquer, dès la maternelle.",
-    image: "/images/activites/anglais.jpg",
-    imageAlt: "Enfants africains en classe, mains levées — illustration Pexels",
-  },
-  {
-    slug: "cuisine",
-    emoji: "🍳",
-    title: "Cuisine",
-    punchline: "Goûter, créer, partager autour d’un atelier",
-    summary:
-      "Un atelier cuisine scolaire pour éveiller les sens, l’autonomie et le goût du travail bien fait.",
-    details:
-      "Mesurer, mélanger, présenter : la cuisine apprend la patience et la coopération. Les enfants découvrent des recettes simples, l’hygiène en cuisine et le plaisir de partager ce qu’ils ont préparé.",
-    image: "/images/activites/cuisine.jpg",
-    imageAlt: "Bol de légumes et céréales — illustration d’atelier cuisine (Pexels)",
-  },
-  {
-    slug: "danse",
-    emoji: "💃",
-    title: "Danse",
-    punchline: "Le corps en mouvement, l’enfant en expression",
-    summary:
-      "Rythme, posture, joie : un cours de danse pour libérer l’énergie et cultiver la présence sur scène comme en classe.",
-    details:
-      "La danse aux Étoiles allie coordination, écoute du groupe et confiance en soi. Un espace où chaque enfant peut s’exprimer, sans jugement, et apprendre à habiter son corps.",
-    image: "/images/activites/danse.jpg",
-    imageAlt: "Enfants africains souriant à la fenêtre d’une école — Unsplash",
-  },
-] as const;
+import { homeActivities } from "./home-activities";
+
+const catalogDetails: Record<string, string> = {
+  "eveil-motricite":
+    "Parcours moteurs, jeux de repérage et manipulation : les tout-petits découvrent leur corps en sécurité. L’équipe adapte les ateliers à l’âge (garderie, maternelle, début primaire) et veille au rythme de chacun.",
+  "ateliers-creatifs":
+    "Peinture, collage, modelage et bricolage : l’enfant exprime ses idées sans pression de résultat. Les réalisations peuvent être montrées aux parents ou exposées en classe pour valoriser l’effort.",
+  "pre-lecture":
+    "Comptines, histoires lues, graphisme et premières lettres : on prépare la lecture avec patience. En maternelle et en CP, les routines sont courtes et joyeuses pour garder l’envie d’apprendre.",
+  "musique":
+    "Chants, instruments simples et mouvements en groupe : la musique aide à mémoriser, à écouter les autres et à prendre confiance. Les fêtes scolaires permettent aussi de montrer ce travail aux familles.",
+  "jeux-educatifs":
+    "Puzzles, jeux de société adaptés, cubes à compter et jeux de rôle : on apprend en jouant, seul ou à plusieurs. L’objectif est la curiosité et la coopération, pas la compétition.",
+  "nature-jardinage":
+    "Observer les plantes, arroser le potager, toucher la terre : des moments calmes pour éveiller le respect du vivant. Selon la saison, les enfants peuvent semer, récolter ou dessiner ce qu’ils voient dans la cour.",
+  "mini-sport":
+    "Jeux de ballon, course, cerceaux et activités collectives sur la cour ou le terrain : bouger, partager et respecter les règles du jeu. L’encadrement reste bienveillant et adapté à chaque cycle.",
+  "cuisine-ludique":
+    "Découvrir les fruits, mélanger, goûter et partager : une approche sensorielle de l’alimentation. Hygiène des mains et vocabulaire des saveurs font partie du jeu, sans obligation de « bien manger » à tout prix.",
+};
+
+/** Catalogue étendu — aligné sur les 8 activités de la page d’accueil. */
+export const activities = homeActivities.map((activity) => ({
+  slug: activity.slug,
+  emoji: activity.emoji,
+  title: activity.title,
+  punchline: activity.description,
+  summary: activity.description,
+  details: catalogDetails[activity.slug] ?? activity.description,
+  image: activity.image?.src,
+  imageAlt: activity.image?.alt ?? activity.title,
+  tint: activity.tint,
+}));
 
 /** Photo de couverture — page Facebook officielle (avril 2024). */
 export const heroImage = {

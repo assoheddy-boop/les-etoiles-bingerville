@@ -1,5 +1,7 @@
 # Mise en production — Les Étoiles de Bingerville
 
+> **Configuration Vercel / Resend / DNS / clés API** — à faire en dernier moment par le client (voir sections ci-dessous). Le code et le contenu du site peuvent être déployés sans ces éléments.
+
 Site : https://les-etoiles-bingerville.vercel.app  
 Projet Vercel : `assoheddy-boops-projects/les-etoiles-bingerville`
 

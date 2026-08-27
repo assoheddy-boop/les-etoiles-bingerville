@@ -24,6 +24,12 @@ export function SiteFooter() {
           <a href={mobile.href} className="mt-3 inline-flex min-h-11 items-center text-lg font-semibold hover:underline">
             {mobile.display}
           </a>
+          <a
+            href={`mailto:${school.email}`}
+            className="mt-2 block text-sm text-white/85 hover:underline"
+          >
+            {school.email}
+          </a>
           <div className="mt-4 flex flex-wrap gap-2">
             <Link
               href={inscriptionCta.href}

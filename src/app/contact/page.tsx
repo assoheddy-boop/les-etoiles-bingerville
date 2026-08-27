@@ -41,6 +41,18 @@ export default function ContactPage() {
             <p className="mt-4 text-sm text-muted">
               {school.hours}. {school.hoursNote}
             </p>
+            {school.facebook ? (
+              <p className="mt-3">
+                <a
+                  href={school.facebook}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="font-semibold text-green hover:underline"
+                >
+                  Page Facebook officielle
+                </a>
+              </p>
+            ) : null}
             <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <a
                 href={whatsappUrl()}

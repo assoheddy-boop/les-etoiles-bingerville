@@ -14,7 +14,7 @@ export default async function HistoirePage() {
 
   return (
     <>
-      <PageHero kicker="L’école" title={cms.histoire.title} lead="Bingerville, depuis 2018." />
+      <PageHero kicker="L’école" title={cms.histoire.title} lead="Bingerville — une histoire à écrire avec les familles du quartier." />
       <Container className="max-w-3xl space-y-6 py-12">
         <EditorialNote>{cms.histoire.editorialNote}</EditorialNote>
         <Prose>

@@ -4,31 +4,36 @@ export const cmsSeed: CmsContent = {
   histoire: {
     title: "Notre histoire & nos valeurs",
     editorialNote:
-      "Texte de démarrage d’après l’avis de constitution (décembre 2021) et l’article FratMat du 18 septembre 2023. Agréments MEN non retrouvés en ligne — placeholders à valider par la direction.",
-    body: `Le Groupe scolaire Les Étoiles de Bingerville est une société à responsabilité limitée constituée le 1er septembre 2021 (RCCM CI-ABJ-03-2021-B12-05532). Son objet : la création et l’exploitation d’écoles préscolaires et primaires. Le siège est à Bingerville, quartier Adjamé-Bingerville (lots 1359 à 1362, ilot 32). Gérant : M. Lacina Koné.
+      "Brouillon éditorial — à valider par la direction. Les éléments juridiques (RCCM, adresse) sont publics ; la chronologie détaillée de la fondation reste à confirmer.",
+    body: `Le Groupe scolaire Les Étoiles de Bingerville est implanté à Adjamé-Bingerville, sur les lots 1359 à 1362 (ilot 32). La société est enregistrée sous le RCCM CI-ABJ-03-2021-B12-05532, avec pour objet la création et l'exploitation d'établissements préscolaires et primaires.
 
-Le 17 septembre 2023, l’établissement a été présenté à la notabilité d’Adjamé-Bingerville, sous la conduite de Mme Koné, directrice. Le campus a été conçu pour environ 350 élèves : de la garderie au CM2, 16 classes, salle des maîtres, cantine, bureaux, salle multimédia, espace de jeux et terrain de sport. L’objectif affiché : 25 enfants par classe, un élève par table.
+L'histoire précise de la fondation — date d'ouverture des premières classes, étapes du campus, noms des fondateurs au-delà des informations publiques — sera complétée ici dès validation par la direction. Ce que nous pouvons dire aujourd'hui : un campus pensé pour accueillir la garderie, la maternelle et le primaire jusqu'au CM2, dans un esprit de proximité avec les familles du quartier.
 
-La rentrée 2023-2024 a ouvert le 25 septembre 2023, avec un parcours français du CP1 au CM1 et un dispositif mixte (français / ivoirien) en CM2.
+Le campus comprend des classes, une cantine, des espaces de jeux et un terrain de sport. L'objectif affiché : des effectifs maîtrisés pour que chaque enfant soit connu et accompagné.
 
-Nous croyons à trois piliers : la bienveillance (chaque enfant est connu et accompagné), l’exigence (le travail, la politesse, la régularité) et le partenariat avec les familles. Les numéros d’agrément MENA / DEEP seront publiés dès confirmation par la direction.`,
+Nos valeurs : la bienveillance (écouter, rassurer, accompagner), l'exigence (rigueur, discipline, travail — notre devise sur Facebook) et le partenariat avec les familles. Les numéros d'agrément MENA / DEEP seront publiés dès confirmation officielle.`,
   },
   motDuProviseur: {
     title: "Mot de la direction",
-    authorLabel: "Mme Koné, directrice",
+    authorLabel: "Mme Koné, directrice — brouillon à confirmer",
     editorialNote:
-      "Brouillon de ton, inspiré des propos publics de Mme Koné (FratMat, septembre 2023). À remplacer par le message officiel de la direction.",
+      "⚠️ Texte provisoire — à remplacer par le message officiel signé par la direction avant publication définitive.",
     body: `Chers parents, chers élèves,
 
 Bienvenue au Groupe scolaire Les Étoiles de Bingerville.
 
-Nous avons voulu un lieu pour la formation des tout-petits : un campus moderne à Adjamé-Bingerville, des classes à effectif maîtrisé, et le respect des familles comme des traditions du village. De la garderie au CM2, notre mission est simple : aider chaque enfant à grandir, briller et exceller.
+Notre devise — Rigueur · Discipline · Travail — accompagne chaque journée. Nous voulons un lieu où les tout-petits et les enfants grandissent en confiance, du premier accueil en garderie jusqu'au CM2.
 
-Ce site présente l’école, oriente vers l’inscription, et ouvre — pour les familles déjà inscrites — un espace de suivi (notes, devoirs, cantine). Les paiements en ligne ne sont pas encore branchés : le secrétariat reste votre interlocuteur.
+Grandir en douceur, briller chaque jour : ce n'est pas un slogan vide. C'est l'attention portée à chaque enfant, la clarté des attentes et le dialogue avec les familles d'Adjamé-Bingerville.
 
-Je vous invite à nous rendre visite. L’équipe vous répondra.
+Ce site vous permet de découvrir l'école, de demander une inscription et — une fois inscrits — de suivre la scolarité via l'espace parents. Les paiements en ligne ne sont pas encore activés : le secrétariat reste votre interlocuteur pour les démarches et les frais.
 
-Ensemble, élevons vos enfants.`,
+Je vous invite à nous rendre visite. L'équipe se fera un plaisir de vous accueillir.
+
+Ensemble, élevons vos enfants.
+
+Mme Koné
+Directrice`,
   },
   informations: {
     title: "Informations pratiques",
@@ -41,7 +46,7 @@ Ensemble, élevons vos enfants.`,
       },
       {
         title: "Horaires",
-        body: "Lundi à vendredi, 7h30 – 16h30. Pour un rendez-vous avec la direction, merci d’appeler ou d’écrire au préalable. Téléphone WhatsApp : à confirmer.",
+        body: "Lundi à vendredi, 7h30 – 16h30. Pour un rendez-vous avec la direction, merci d’appeler ou d’écrire au préalable. WhatsApp : +225 07 06 06 96 67.",
       },
       {
         title: "Cantine",
