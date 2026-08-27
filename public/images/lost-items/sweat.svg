@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-label="Sweat gris">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f3f4f6"/>
+      <stop offset="100%" stop-color="#e5e7eb"/>
+    </linearGradient>
+  </defs>
+  <rect width="240" height="240" rx="32" fill="url(#bg)"/>
+  <path d="M72 92c8-18 28-28 48-28s40 10 48 28l12 88c2 10-6 18-16 18H76c-10 0-18-8-16-18l12-88z" fill="#9ca3af"/>
+  <path d="M96 64c0-8 10-14 24-14s24 6 24 14" fill="none" stroke="#6b7280" stroke-width="8" stroke-linecap="round"/>
+  <ellipse cx="120" cy="128" rx="34" ry="28" fill="#6b7280"/>
+  <text x="120" y="136" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#f9fafb">ECEME</text>
+</svg>

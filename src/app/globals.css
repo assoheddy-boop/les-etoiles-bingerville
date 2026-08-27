@@ -1,0 +1,83 @@
+@import "tailwindcss";
+
+:root {
+  --ink: #1a1714;
+  --muted: #5c5349;
+  --paper: #fbf7f1;
+  --paper-2: #f3ebe0;
+  --line: #e4d8c6;
+  --green: #1a4f8b;
+  --green-deep: #12305c;
+  --green-soft: #e8eef6;
+  --terracotta: #c41e3a;
+  --terracotta-soft: #f8e4e6;
+  --gold: #c9a227;
+  --white: #fffdf9;
+}
+
+@theme inline {
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-paper: var(--paper);
+  --color-paper-2: var(--paper-2);
+  --color-line: var(--line);
+  --color-green: var(--green);
+  --color-green-deep: var(--green-deep);
+  --color-green-soft: var(--green-soft);
+  --color-terracotta: var(--terracotta);
+  --color-terracotta-soft: var(--terracotta-soft);
+  --color-gold: var(--gold);
+  --color-white: var(--white);
+  --font-sans: "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-display: Georgia, "Times New Roman", serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: clip;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  overflow-x: clip;
+}
+
+img,
+video,
+iframe {
+  max-width: 100%;
+}
+
+iframe {
+  display: block;
+}
+
+input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]):not([type="file"]):not([type="submit"]):not([type="button"]),
+select,
+textarea {
+  max-width: 100%;
+}
+
+form :is(input[type="text"], input[type="email"], input[type="password"], input[type="tel"], input[type="number"], input[type="date"], input[type="search"], input:not([type]), select, textarea) {
+  width: 100%;
+  min-height: 2.75rem;
+}
+
+h1,
+h2,
+h3,
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--terracotta);
+  outline-offset: 3px;
+}

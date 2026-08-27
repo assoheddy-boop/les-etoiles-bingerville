@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Groupe scolaire Les Étoiles de Bingerville — proposition de nouveau site</title>
+  <style>
+    :root {
+      --ink: #1a1714;
+      --muted: #5c5349;
+      --paper: #fbf7f1;
+      --paper-2: #f3ebe0;
+      --line: #e4d8c6;
+      --green: #1e5631;
+      --green-deep: #143d23;
+      --terracotta: #c45c12;
+      --cream: #f6e4d4;
+      --white: #fffdf9;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: #d8cbb8;
+      color: var(--ink);
+      font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+    }
+
+    .no-print {
+      max-width: 297mm;
+      margin: 0 auto;
+      padding: 1rem 1rem 0;
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .no-print p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: #3d362e;
+      max-width: 38rem;
+    }
+
+    .print-btn {
+      border: 0;
+      cursor: pointer;
+      min-height: 2.75rem;
+      padding: 0 1.25rem;
+      border-radius: 999px;
+      background: var(--green);
+      color: white;
+      font-weight: 700;
+      font-size: 0.9rem;
+      white-space: nowrap;
+    }
+
+    .print-btn:hover { background: var(--green-deep); }
+
+    .sheet {
+      width: 297mm;
+      height: 210mm;
+      margin: 12px auto 24px;
+      background: var(--paper);
+      color: var(--ink);
+      overflow: hidden;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      box-shadow: 0 18px 50px rgba(20, 61, 35, 0.18);
+    }
+
+    header.hero {
+      position: relative;
+      min-height: 8.6rem;
+      color: white;
+      overflow: hidden;
+      background: var(--green-deep);
+    }
+
+    header.hero img.bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 40%;
+      opacity: 0.45;
+    }
+
+    header.hero .veil {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, #143d23 0%, rgba(20,61,35,.88) 48%, rgba(20,61,35,.55) 100%);
+    }
+
+    header.hero .inner {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1.45fr 0.85fr;
+      gap: 1rem;
+      align-items: end;
+      padding: 1.1rem 1.35rem 1.15rem;
+    }
+
+    .kicker {
+      margin: 0;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--cream);
+    }
+
+    h1 {
+      margin: 0.25rem 0 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.75rem;
+      line-height: 1.15;
+      font-weight: 600;
+    }
+
+    h1 span { display: block; color: var(--cream); }
+
+    .slogan {
+      margin: 0.45rem 0 0;
+      font-size: 0.92rem;
+      color: rgba(255,255,255,.92);
+    }
+
+    .demo-box {
+      border: 1px solid rgba(255,255,255,.22);
+      background: rgba(255,255,255,.1);
+      border-radius: 12px;
+      padding: 0.7rem 0.85rem;
+    }
+
+    .demo-box .label {
+      margin: 0;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--cream);
+    }
+
+    .demo-url {
+      margin: 0.3rem 0 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.02rem;
+      font-weight: 700;
+      line-height: 1.25;
+      word-break: break-all;
+    }
+
+    .demo-hint {
+      margin: 0.25rem 0 0;
+      font-size: 0.75rem;
+      color: rgba(255,255,255,.82);
+    }
+
+    .body {
+      display: grid;
+      grid-template-columns: 0.72fr 1.28fr;
+      gap: 0.75rem;
+      padding: 0.75rem 1.1rem;
+      min-height: 0;
+    }
+
+    .vitrine {
+      border: 1px solid var(--line);
+      background: var(--paper-2);
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .vitrine img {
+      width: 100%;
+      height: 9.2rem;
+      object-fit: cover;
+      display: block;
+    }
+
+    .vitrine .pad { padding: 0.7rem 0.8rem 0.85rem; }
+
+    h2 {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+    }
+
+    .vitrine ul {
+      margin: 0.5rem 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .vitrine li {
+      display: flex;
+      gap: 0.45rem;
+      font-size: 0.8rem;
+      line-height: 1.3;
+      margin: 0 0 0.35rem;
+    }
+
+    .dot {
+      width: 0.38rem;
+      height: 0.38rem;
+      margin-top: 0.38rem;
+      border-radius: 50%;
+      background: var(--terracotta);
+      flex-shrink: 0;
+    }
+
+    .note {
+      margin: 0.55rem 0 0;
+      font-size: 0.72rem;
+      color: var(--muted);
+    }
+
+    .modules {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 0.75rem;
+      min-height: 0;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      background: white;
+      border-radius: 12px;
+      padding: 0.7rem 0.7rem 0.8rem;
+      min-height: 0;
+    }
+
+    .card h2.green { color: var(--green-deep); }
+    .card h2.terra { color: var(--terracotta); }
+    .card h2.mid { color: var(--green); }
+
+    .chips {
+      margin: 0.5rem 0 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+    }
+
+    .chips li {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid var(--line);
+      background: var(--white);
+      border-radius: 999px;
+      padding: 0.16rem 0.5rem;
+      font-size: 0.7rem;
+      font-weight: 700;
+      line-height: 1.25;
+    }
+
+    footer.bar {
+      border-top: 1px solid var(--line);
+      background: var(--paper-2);
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 0.75rem;
+      align-items: center;
+      padding: 0.55rem 1.2rem 0.65rem;
+    }
+
+    .foot-label {
+      margin: 0;
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .logins {
+      margin: 0.25rem 0 0;
+      font-size: 0.7rem;
+      line-height: 1.45;
+      color: rgba(26,23,20,.85);
+    }
+
+    .logins code {
+      font-family: ui-monospace, Consolas, monospace;
+      font-weight: 700;
+      font-size: 0.68rem;
+    }
+
+    .later {
+      margin: 0;
+      font-size: 0.7rem;
+      line-height: 1.35;
+      color: var(--muted);
+      text-align: right;
+    }
+
+    .later strong { color: var(--ink); }
+
+    @media print {
+      @page {
+        size: A4 landscape;
+        margin: 0;
+      }
+
+      html, body {
+        background: white !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .no-print { display: none !important; }
+
+      .sheet {
+        margin: 0;
+        width: 297mm;
+        height: 210mm;
+        box-shadow: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="no-print">
+    <p>
+      Flyer autonome (pas sur le site). Cliquez sur <strong>Imprimer</strong>, puis
+      <strong>Enregistrer au format PDF</strong> — une page A4 paysage, marges minimales.
+    </p>
+    <button class="print-btn" type="button" onclick="window.print()">Imprimer</button>
+  </div>
+
+  <article class="sheet">
+    <header class="hero">
+      <img class="bg" src="fratmat-campus.jpg" alt="Campus Primaire Les Étoiles à Bingerville" />
+      <div class="veil"></div>
+      <div class="inner">
+        <div>
+          <p class="kicker">Bingerville  · Adjamé-Bingerville</p>
+          <h1>
+            Proposition de nouveau site
+            <span>Groupe scolaire Les Étoiles de Bingerville</span>
+          </h1>
+          <p class="slogan">Les Étoiles — apprendre autrement, grandir ensemble</p>
+        </div>
+        <div class="demo-box">
+          <p class="label">Lien de démonstration</p>
+          <p class="demo-url">https://les-etoiles-bingerville.vercel.app</p>
+          <p class="demo-hint">À ouvrir sur ordinateur ou téléphone. Ce n’est pas l’adresse du flyer.</p>
+        </div>
+      </div>
+    </header>
+
+    <div class="body">
+      <aside class="vitrine">
+        <img src="fratmat-campus.jpg" alt="Campus Les Étoiles — Bingerville / Adjamé" />
+        <div class="pad">
+          <h2>Vitrine publique</h2>
+          <ul>
+            <li><span class="dot"></span><span>Accueil avec photo du campus</span></li>
+            <li><span class="dot"></span><span>Activités : natation, robotique, anglais, cuisine, danse</span></li>
+            <li><span class="dot"></span><span>Inscriptions en ligne</span></li>
+            <li><span class="dot"></span><span>Contact WhatsApp</span></li>
+          </ul>
+          <p class="note">Le site présente l’école aux familles, tout en ouvrant des espaces privés pour le suivi au quotidien.</p>
+        </div>
+      </aside>
+
+      <div class="modules">
+        <section class="card">
+          <h2 class="green">Espace parents</h2>
+          <ul class="chips">
+            <li>Notes</li>
+            <li>Absences</li>
+            <li>Devoirs + pièces jointes</li>
+            <li>Bulletins PDF</li>
+            <li>Messages</li>
+            <li>Paiements</li>
+            <li>Emploi du temps</li>
+            <li>Bus</li>
+            <li>Sortie</li>
+            <li>Santé</li>
+            <li>Objets perdus</li>
+          </ul>
+        </section>
+        <section class="card">
+          <h2 class="terra">Espace enseignants</h2>
+          <ul class="chips">
+            <li>Appel</li>
+            <li>Devoirs</li>
+            <li>Notes</li>
+            <li>Emploi du temps</li>
+            <li>Bus</li>
+            <li>Sortie</li>
+            <li>Santé</li>
+            <li>RH</li>
+            <li>Objets perdus</li>
+          </ul>
+        </section>
+        <section class="card">
+          <h2 class="mid">Direction</h2>
+          <ul class="chips">
+            <li>Élèves</li>
+            <li>Classes</li>
+            <li>Enseignants</li>
+            <li>Emploi du temps</li>
+            <li>Matières</li>
+            <li>Frais</li>
+            <li>Parents</li>
+            <li>Année scolaire</li>
+            <li>Contenu du site</li>
+            <li>Transport</li>
+            <li>Sortie</li>
+            <li>Santé</li>
+            <li>RH</li>
+          </ul>
+        </section>
+      </div>
+    </div>
+
+    <footer class="bar">
+      <div>
+        <p class="foot-label">Accès démo — à usage interne</p>
+        <p class="logins">
+          Direction : <code>admin</code> / <code>Direction2026!</code>
+          · Enseignant : <code>enseignant@lesetoiles.ci</code> / <code>Enseignant2026!</code>
+          · Parent : <code>ETOILES-DEMO-001</code> / <code>Parent2026!</code>
+        </p>
+      </div>
+      <p class="later">
+        Version de démonstration. Les paiements réels et le nom de domaine
+        <strong>lesetoilesbingerville.ci</strong> pourront être branchés ensuite.
+      </p>
+    </footer>
+  </article>
+</body>
+</html>

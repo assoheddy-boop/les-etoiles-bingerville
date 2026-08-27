@@ -1,0 +1,62 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+.npm-cache
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# env files (can opt-in for committing if needed)
+.env*
+!.env.example
+
+# données locales (demandes, CMS écrasé, paiements démo)
+/data/*.json
+
+# pièces jointes devoirs (conserver les fichiers démo)
+/data/uploads/homeworks/*
+!/data/uploads/homeworks/.gitkeep
+!/data/uploads/homeworks/hw-gs-lettres.pdf
+!/data/uploads/homeworks/hw-ce2-maths.pdf
+
+# photos élèves (fiches inscription)
+/data/uploads/students/*
+!/data/uploads/students/.gitkeep
+
+# photos objets perdus
+/data/uploads/lost-items/*
+!/data/uploads/lost-items/.gitkeep
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+.vercel

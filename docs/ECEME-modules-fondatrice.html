@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Plateforme Les Étoiles — ce qui est déjà en place · 22 août 2026</title>
+  <style>
+    :root {
+      --ink: #1a1714;
+      --muted: #5c5349;
+      --paper: #fbf7f1;
+      --paper-2: #f3ebe0;
+      --line: #e4d8c6;
+      --green: #1e5631;
+      --green-deep: #143d23;
+      --terracotta: #c45c12;
+      --cream: #f6e4d4;
+      --white: #fffdf9;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: #d8cbb8;
+      color: var(--ink);
+      font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+    }
+
+    .no-print {
+      max-width: 297mm;
+      margin: 0 auto;
+      padding: 1rem 1rem 0;
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .no-print p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: #3d362e;
+      max-width: 42rem;
+    }
+
+    .print-btn {
+      border: 0;
+      cursor: pointer;
+      min-height: 2.75rem;
+      padding: 0 1.25rem;
+      border-radius: 999px;
+      background: var(--green);
+      color: white;
+      font-weight: 700;
+      font-size: 0.9rem;
+      white-space: nowrap;
+    }
+
+    .print-btn:hover { background: var(--green-deep); }
+
+    .sheet {
+      width: 297mm;
+      height: 210mm;
+      margin: 12px auto 24px;
+      background: var(--paper);
+      color: var(--ink);
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 18px 50px rgba(20, 61, 35, 0.18);
+    }
+
+    .sheet:last-of-type { margin-bottom: 32px; }
+
+    .kicker {
+      margin: 0;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+    }
+
+    h1, h2, h3 { font-family: Georgia, "Times New Roman", serif; font-weight: 600; }
+
+    h1 { margin: 0; line-height: 1.12; }
+    h2 { margin: 0; font-size: 1.55rem; color: var(--green-deep); line-height: 1.2; }
+    h3 { margin: 0; font-size: 1.05rem; color: var(--green-deep); }
+
+    p { margin: 0; }
+
+    .lead {
+      margin-top: 0.45rem;
+      font-size: 0.95rem;
+      line-height: 1.4;
+      color: var(--muted);
+      max-width: 46rem;
+    }
+
+    .page-head {
+      padding: 0.85rem 1.25rem 0.7rem;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 1rem;
+    }
+
+    .page-head .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+    }
+
+    .page-head .brand img {
+      width: 2.1rem;
+      height: 2.1rem;
+      border-radius: 0.55rem;
+    }
+
+    .page-head .brand span {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--green-deep);
+    }
+
+    .page-body {
+      flex: 1;
+      padding: 0.85rem 1.25rem 0.7rem;
+      min-height: 0;
+    }
+
+    .page-foot {
+      border-top: 1px solid var(--line);
+      background: var(--paper-2);
+      padding: 0.38rem 1.25rem;
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.65rem;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+    }
+
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem; }
+    .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.75rem; }
+    .grid-5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.6rem; }
+
+    .card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 0.75rem 0.85rem 0.85rem;
+    }
+
+    .card ul {
+      margin: 0.5rem 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .card li {
+      display: flex;
+      gap: 0.45rem;
+      font-size: 0.8rem;
+      line-height: 1.35;
+      margin: 0 0 0.32rem;
+    }
+
+    .dot {
+      width: 0.38rem;
+      height: 0.38rem;
+      margin-top: 0.38rem;
+      border-radius: 50%;
+      background: var(--terracotta);
+      flex-shrink: 0;
+    }
+
+    .chip-row {
+      margin: 0.5rem 0 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.32rem;
+    }
+
+    .chip {
+      display: inline-flex;
+      border: 1px solid var(--line);
+      background: var(--paper);
+      border-radius: 999px;
+      padding: 0.14rem 0.5rem;
+      font-size: 0.68rem;
+      font-weight: 700;
+    }
+
+    .tag {
+      display: inline-block;
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 0.28rem;
+    }
+
+    /* Cover */
+    .cover { padding: 0; background: var(--green-deep); color: white; }
+    .cover-grid {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      min-height: 0;
+    }
+    .cover-left {
+      padding: 1.35rem 1.5rem 1.15rem;
+      display: flex;
+      flex-direction: column;
+    }
+    .cover-left .kicker { color: var(--cream); }
+    .cover h1 {
+      margin-top: 0.85rem;
+      font-size: 2.55rem;
+      color: white;
+    }
+    .cover h1 span {
+      display: block;
+      margin-top: 0.2rem;
+      font-size: 1.55rem;
+      color: var(--cream);
+      font-weight: 500;
+    }
+    .cover-slogan {
+      margin-top: 0.7rem;
+      font-size: 1.05rem;
+      font-style: italic;
+      color: rgba(255,255,255,.88);
+    }
+    .cover-meta {
+      margin-top: auto;
+      padding-top: 1rem;
+    }
+    .cover-date {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.15rem;
+      color: var(--cream);
+    }
+    .cover-note {
+      margin-top: 0.35rem;
+      font-size: 0.82rem;
+      color: rgba(255,255,255,.78);
+      max-width: 28rem;
+      line-height: 1.4;
+    }
+    .cover-right {
+      position: relative;
+      overflow: hidden;
+    }
+    .cover-right img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 40%;
+    }
+    .cover-right .veil {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(20,61,35,.35) 0%, transparent 28%);
+    }
+    .cover-logo {
+      width: 4.4rem;
+      height: 4.4rem;
+      border-radius: 1.15rem;
+      background: white;
+      padding: 0.12rem;
+    }
+    .schools-bar {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 0;
+      background: #0f2f1a;
+      color: white;
+    }
+    .schools-bar article {
+      padding: 0.7rem 1.1rem;
+      border-left: 1px solid rgba(255,255,255,.12);
+    }
+    .schools-bar article:first-child { border-left: 0; }
+    .schools-bar .n {
+      font-size: 0.62rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--cream);
+      font-weight: 700;
+    }
+    .schools-bar h3 { color: white; font-size: 0.95rem; margin-top: 0.2rem; }
+    .schools-bar p { font-size: 0.72rem; color: rgba(255,255,255,.75); margin-top: 0.15rem; }
+
+    .space-card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 0.7rem 0.7rem 0.8rem;
+      min-height: 0;
+    }
+    .space-card .num {
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+    }
+    .space-card h3 { margin-top: 0.25rem; font-size: 1rem; }
+    .space-card p {
+      margin-top: 0.4rem;
+      font-size: 0.76rem;
+      line-height: 1.35;
+      color: var(--muted);
+    }
+
+    .step {
+      display: grid;
+      grid-template-columns: 2.4rem 1fr;
+      gap: 0.65rem;
+      align-items: start;
+    }
+    .step-n {
+      width: 2.4rem;
+      height: 2.4rem;
+      border-radius: 999px;
+      background: var(--green-deep);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.1rem;
+    }
+    .login {
+      font-family: ui-monospace, Consolas, "Courier New", monospace;
+      font-weight: 700;
+      font-size: 0.78rem;
+      background: var(--paper-2);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 0.08rem 0.35rem;
+    }
+
+    .honesty {
+      background: var(--cream);
+      border: 1px solid #e8c9a8;
+      border-radius: 14px;
+      padding: 0.75rem 0.9rem;
+    }
+    .honesty h3 { color: #8a3d0c; }
+
+    .check li { align-items: flex-start; }
+    .check .box {
+      width: 0.85rem;
+      height: 0.85rem;
+      margin-top: 0.12rem;
+      border: 1.5px solid var(--green);
+      border-radius: 3px;
+      flex-shrink: 0;
+    }
+
+    @media print {
+      @page { size: A4 landscape; margin: 0; }
+      html, body {
+        background: white !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      .no-print { display: none !important; }
+      .sheet {
+        margin: 0;
+        box-shadow: none;
+        page-break-after: always;
+        break-after: page;
+      }
+      .sheet:last-of-type {
+        page-break-after: auto;
+        break-after: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="no-print">
+    <p>
+      Support de rendez-vous du <strong>22 août 2026</strong>. Cliquez sur
+      <strong>Imprimer</strong>, puis <strong>Enregistrer au format PDF</strong>
+      — 8 pages A4 paysage, marges minimales.
+    </p>
+    <button class="print-btn" type="button" onclick="window.print()">Imprimer</button>
+  </div>
+
+  <!-- 1. Couverture -->
+  <article class="sheet cover">
+    <div class="cover-grid">
+      <div class="cover-left">
+        <img class="cover-logo" src="logo-etoiles.png" alt="Logo Les Étoiles" />
+        <p class="kicker" style="margin-top:1.1rem">Groupe Les Étoiles · Bingerville  · Adjamé-Bingerville</p>
+        <h1>
+          Plateforme Les Étoiles
+          <span>Ce qui est déjà en place</span>
+        </h1>
+        <p class="cover-slogan">« apprendre autrement, grandir ensemble »</p>
+        <div class="cover-meta">
+          <p class="cover-date">Rendez-vous fondatrice · samedi 22 août 2026</p>
+          <p class="cover-note">
+            Un outil à ouvrir ensemble aujourd’hui — pas une liste de souhaits.
+            Quatre espaces privés, un site public, des documents officiels au logo Les Étoiles.
+          </p>
+        </div>
+      </div>
+      <div class="cover-right">
+        <img src="fratmat-campus.jpg" alt="Campus Primaire Les Étoiles, Bingerville" />
+        <div class="veil"></div>
+      </div>
+    </div>
+    <div class="schools-bar">
+      <article>
+        <p class="n">Maternelle</p>
+        <h3>Maternelle Les Étoiles</h3>
+        <p>Agrément MEN à confirmer</p>
+      </article>
+      <article>
+        <p class="n">Primaire</p>
+        <h3>Primaire Les Étoiles</h3>
+        <p>Agrément MEN à confirmer</p>
+      </article>
+      <article>
+        <p class="n">Collège</p>
+        <h3>Collège Les Étoiles</h3>
+        <p>Ouverture en préparation</p>
+      </article>
+    </div>
+  </article>
+
+  <!-- 2. Vision -->
+  <article class="sheet">
+    <header class="page-head">
+      <div>
+        <p class="kicker">Vision</p>
+        <h2>Une école, cinq portes d’entrée</h2>
+        <p class="lead">Chacun a son écran. Les informations se rejoignent. Plus besoin de WhatsApp pour tout, ni de cinq logiciels différents.</p>
+      </div>
+      <div class="brand">
+        <img src="logo-etoiles.png" alt="" />
+        <span>Les Étoiles</span>
+      </div>
+    </header>
+    <div class="page-body">
+      <div class="grid-5">
+        <section class="space-card">
+          <p class="num">01 · Public</p>
+          <h3>Le site</h3>
+          <p>La vitrine du campus. Les familles découvrent l’école, les cycles, les activités et s’inscrivent.</p>
+        </section>
+        <section class="space-card">
+          <p class="num">02 · Familles</p>
+          <h3>Parents</h3>
+          <p>Notes, devoirs, bulletin, bus, santé, paiements et QR de sortie — le suivi de l’enfant en un lieu.</p>
+        </section>
+        <section class="space-card">
+          <p class="num">03 · Classe</p>
+          <h3>Enseignants</h3>
+          <p>Appel, notes, devoirs avec pièces jointes, messages, emploi du temps. L’enseignant travaille, les parents voient.</p>
+        </section>
+        <section class="space-card">
+          <p class="num">04 · Pilotage</p>
+          <h3>Direction</h3>
+          <p>Trois établissements. Inscriptions, pédagogie, finances, RH et services — le tableau de bord du groupe.</p>
+        </section>
+        <section class="space-card">
+          <p class="num">05 · Grille</p>
+          <h3>Vigile</h3>
+          <p>Un écran dédié, séparé de la direction. On scanne ou on saisit le code. La sortie est tracée.</p>
+        </section>
+      </div>
+      <div class="grid-2" style="margin-top:0.85rem">
+        <section class="card">
+          <p class="tag">Ce que ça change</p>
+          <h3>Moins de courses, plus de clarté</h3>
+          <ul>
+            <li><span class="dot"></span><span>Le parent consulte notes, absences et devoirs sans appeler le secrétariat.</span></li>
+            <li><span class="dot"></span><span>L’enseignant saisit une fois : l’appel et les notes arrivent chez les familles.</span></li>
+            <li><span class="dot"></span><span>La direction voit les trois écoles du campus, pas trois classeurs.</span></li>
+            <li><span class="dot"></span><span>Le vigile n’entre pas dans l’administration : il a son propre espace.</span></li>
+          </ul>
+        </section>
+        <section class="card">
+          <p class="tag">Identité Les Étoiles</p>
+          <h3>Pensé pour Adjamé-Bingerville, pas recopié</h3>
+          <ul>
+            <li><span class="dot"></span><span>Slogan, campus, agréments MEN et photo de l’école — pas une duplicata d’une autre école.</span></li>
+            <li><span class="dot"></span><span>Maternelle, primaire et collège en ouverture, sur un même campus.</span></li>
+            <li><span class="dot"></span><span>Documents officiels (bulletins, certificats, fiches de paie) au logo Les Étoiles.</span></li>
+            <li><span class="dot"></span><span>Textes, tarifs et photos officiels restent à valider avec vous.</span></li>
+          </ul>
+        </section>
+      </div>
+    </div>
+    <footer class="page-foot">
+      <span>Groupe scolaire Les Étoiles de Bingerville · Bingerville / Adjamé</span>
+      <span>Support de rendez-vous · 22 août 2026 · 2 / 8</span>
+    </footer>
+  </article>
+
+  <!-- 3. Site public + parents -->
+  <article class="sheet">
+    <header class="page-head">
+      <div>
+        <p class="kicker">Familles</p>
+        <h2>Du premier clic jusqu’au suivi de l’enfant</h2>
+        <p class="lead">Le site donne envie. L’espace parents rassure au quotidien.</p>
+      </div>
+      <div class="brand">
+        <img src="logo-etoiles.png" alt="" />
+        <span>Les Étoiles</span>
+      </div>
+    </header>
+    <div class="page-body grid-2">
+      <section class="card" style="padding:0; overflow:hidden; display:flex; flex-direction:column">
+        <img src="campus-enfants.jpg" alt="Entrée des Les Étoiles" style="width:100%; height:7.2rem; object-fit:cover; display:block" />
+        <div style="padding:0.75rem 0.9rem 0.9rem">
+          <p class="tag">Site public</p>
+          <h3>La vitrine du campus</h3>
+          <ul>
+            <li><span class="dot"></span><span>Accueil avec photo du campus, slogan et trois cycles.</span></li>
+            <li><span class="dot"></span><span>L’école : présentation, histoire, mot du proviseur, agréments MEN.</span></li>
+            <li><span class="dot"></span><span>Maternelle, primaire, secondaire — chaque cycle a sa page.</span></li>
+            <li><span class="dot"></span><span>Activités : natation, robotique, anglais, cuisine, danse.</span></li>
+            <li><span class="dot"></span><span>Inscriptions, actualités, contact, plan, WhatsApp.</span></li>
+            <li><span class="dot"></span><span>Objets perdus et mentions légales.</span></li>
+          </ul>
+          <p style="margin-top:0.55rem; font-size:0.75rem; color:var(--muted)">Les familles voient Les Étoiles. Elles n’ont pas à chercher un autre site.</p>
+        </div>
+      </section>
+      <section class="card">
+        <p class="tag">Espace parents</p>
+        <h3>Tout le suivi, sans compte enfant</h3>
+        <p style="margin-top:0.35rem; font-size:0.8rem; color:var(--muted); line-height:1.4">
+          Connexion par le matricule de l’élève. Un tableau de bord, pas une usine.
+        </p>
+        <ul>
+          <li><span class="dot"></span><span><strong>Notes et bulletins PDF</strong> — résultats publiés, bulletin téléchargeable au logo Les Étoiles.</span></li>
+          <li><span class="dot"></span><span><strong>Devoirs</strong> — le travail du soir, avec pièce jointe si l’enseignant l’ajoute.</span></li>
+          <li><span class="dot"></span><span><strong>Absences</strong> — l’appel de la classe arrive chez le parent.</span></li>
+          <li><span class="dot"></span><span><strong>Emploi du temps</strong> — la grille de la classe, publiée par la direction.</span></li>
+          <li><span class="dot"></span><span><strong>Messages</strong> — un fil avec l’enseignant, sans perdre le fil WhatsApp.</span></li>
+          <li><span class="dot"></span><span><strong>Bus, santé, objets perdus</strong> — le quotidien du campus.</span></li>
+          <li><span class="dot"></span><span><strong>Sortie</strong> — un QR du jour à montrer à la grille.</span></li>
+          <li><span class="dot"></span><span><strong>Paiements</strong> — scolarité et cantine, choix Wave / Orange Money à l’écran.</span></li>
+        </ul>
+        <div class="chip-row">
+          <span class="chip">Notes</span>
+          <span class="chip">Bulletins PDF</span>
+          <span class="chip">Devoirs</span>
+          <span class="chip">Absences</span>
+          <span class="chip">EDT</span>
+          <span class="chip">Messages</span>
+          <span class="chip">Bus</span>
+          <span class="chip">Santé</span>
+          <span class="chip">QR sortie</span>
+          <span class="chip">Paiements</span>
+        </div>
+      </section>
+    </div>
+    <footer class="page-foot">
+      <span>Groupe scolaire Les Étoiles de Bingerville · Bingerville / Adjamé</span>
+      <span>Support de rendez-vous · 22 août 2026 · 3 / 8</span>
+    </footer>
+  </article>
+
+  <!-- 4. Enseignants + vigile -->
+  <article class="sheet">
+    <header class="page-head">
+      <div>
+        <p class="kicker">Équipe &amp; grille</p>
+        <h2>Ceux qui font tourner la journée</h2>
+        <p class="lead">L’enseignant tient sa classe. Le vigile tient la sortie. Deux métiers, deux écrans, zéro mélange.</p>
+      </div>
+      <div class="brand">
+        <img src="logo-etoiles.png" alt="" />
+        <span>Les Étoiles</span>
+      </div>
+    </header>
+    <div class="page-body grid-2">
+      <section class="card">
+        <p class="tag">Espace enseignants</p>
+        <h3>La classe, sans paperasse en double</h3>
+        <ul>
+          <li><span class="dot"></span><span><strong>Appel</strong> — présent, retard, absent. Les parents le voient.</span></li>
+          <li><span class="dot"></span><span><strong>Notes</strong> — une saisie, visible dans l’espace parents.</span></li>
+          <li><span class="dot"></span><span><strong>Devoirs + pièce jointe</strong> — fiche, photo ou document, envoyé aux familles.</span></li>
+          <li><span class="dot"></span><span><strong>Emploi du temps et classes</strong> — ce qui est attribué à l’enseignant.</span></li>
+          <li><span class="dot"></span><span><strong>Messages</strong> — un échange clair avec le parent.</span></li>
+          <li><span class="dot"></span><span><strong>Vie scolaire</strong> — bus, santé, objets perdus, QR de sortie.</span></li>
+          <li><span class="dot"></span><span><strong>Mon espace RH</strong> — présence, congés, avances, fiche de paie. Les salaires des collègues restent privés.</span></li>
+        </ul>
+        <div class="chip-row">
+          <span class="chip">Appel</span>
+          <span class="chip">Notes</span>
+          <span class="chip">Devoirs</span>
+          <span class="chip">EDT</span>
+          <span class="chip">Messages</span>
+          <span class="chip">Mon espace RH</span>
+        </div>
+      </section>
+      <section class="card" style="background:var(--green-deep); color:white; border-color:#0f2f1a">
+        <p class="tag" style="color:var(--cream)">Nouveau · Espace vigile</p>
+        <h3 style="color:white">La grille, enfin un outil à elle</h3>
+        <p style="margin-top:0.4rem; font-size:0.82rem; line-height:1.4; color:rgba(255,255,255,.82)">
+          Plus besoin d’ouvrir l’administration. Le vigile a sa propre connexion, son tableau de bord, son champ de saisie.
+        </p>
+        <ul>
+          <li><span class="dot"></span><span style="color:rgba(255,255,255,.92)">Scan du QR ou saisie du code (lecteur USB ou clavier).</span></li>
+          <li><span class="dot"></span><span style="color:rgba(255,255,255,.92)">Liste du jour : élèves encore à récupérer, validations déjà faites.</span></li>
+          <li><span class="dot"></span><span style="color:rgba(255,255,255,.92)">Vrais QR, lisibles au téléphone ou au lecteur — plus de motif décoratif.</span></li>
+          <li><span class="dot"></span><span style="color:rgba(255,255,255,.92)">Valable pour la journée. Une fois scanné, c’est enregistré.</span></li>
+        </ul>
+        <p style="margin-top:0.7rem; font-size:0.78rem; color:var(--cream)">
+          Le parent montre le téléphone. Le vigile valide. La direction sait qui est sorti.
+        </p>
+      </section>
+    </div>
+    <footer class="page-foot">
+      <span>Groupe scolaire Les Étoiles de Bingerville · Bingerville / Adjamé</span>
+      <span>Support de rendez-vous · 22 août 2026 · 4 / 8</span>
+    </footer>
+  </article>
+
+  <!-- 5. Direction scolarité / pédagogie -->
+  <article class="sheet">
+    <header class="page-head">
+      <div>
+        <p class="kicker">Direction · scolarité &amp; pédagogie</p>
+        <h2>Le secrétariat et la classe, sous un même toit</h2>
+        <p class="lead">Menu groupé : Accueil, Établissement, Scolarité, Pédagogie, Finances, Services, RH.</p>
+      </div>
+      <div class="brand">
+        <img src="logo-etoiles.png" alt="" />
+        <span>Les Étoiles</span>
+      </div>
+    </header>
+    <div class="page-body">
+      <div class="grid-3">
+        <section class="card">
+          <p class="tag">Groupe</p>
+          <h3>Trois établissements, un campus</h3>
+          <ul>
+            <li><span class="dot"></span><span>Tableau de bord : effectifs, fiches de l’année, impayés, personnel.</span></li>
+            <li><span class="dot"></span><span>Maternelle, primaire, collège — chacun avec son agrément ou son statut d’ouverture.</span></li>
+            <li><span class="dot"></span><span>Année scolaire, classes, élèves, parents, enseignants.</span></li>
+            <li><span class="dot"></span><span>Demandes reçues depuis le site (contact / inscriptions).</span></li>
+          </ul>
+        </section>
+        <section class="card">
+          <p class="tag">Inscriptions</p>
+          <h3>La fiche comme au secrétariat</h3>
+          <ul>
+            <li><span class="dot"></span><span>Identité de l’élève, famille, classe, établissement.</span></li>
+            <li><span class="dot"></span><span>Check-list de 14 pièces (photos, extrait, visite médicale, livret…).</span></li>
+            <li><span class="dot"></span><span>Statuts : nouvel élève, réinscription, transfert, réaffectation.</span></li>
+            <li><span class="dot"></span><span>PDF : fiche, certificat de scolarité, attestation — logo Les Étoiles.</span></li>
+            <li><span class="dot"></span><span>Campagne de réinscriptions pour l’année suivante.</span></li>
+          </ul>
+        </section>
+        <section class="card">
+          <p class="tag">Pédagogie</p>
+          <h3>De l’appel au bulletin officiel</h3>
+          <ul>
+            <li><span class="dot"></span><span>Emploi du temps et matières.</span></li>
+            <li><span class="dot"></span><span>Vue vie scolaire : appels, devoirs, messages, bulletins.</span></li>
+            <li><span class="dot"></span><span>Bulletins type MENET, au logo Les Étoiles, téléchargeables.</span></li>
+            <li><span class="dot"></span><span>Le parent les retrouve dans son espace. Pas de course au papier.</span></li>
+          </ul>
+        </section>
+      </div>
+      <section class="card" style="margin-top:0.75rem">
+        <p class="tag">Bénéfice direction</p>
+        <h3>Une inscription suivie, un bulletin signé, une famille informée</h3>
+        <p style="margin-top:0.4rem; font-size:0.85rem; line-height:1.45; color:var(--muted)">
+          Le dossier n’est plus dans un classeur d’un côté et un tableur de l’autre.
+          La fiche vit : pièces, statut, PDF, puis notes et bulletin.
+          Le collège en ouverture a déjà sa place dans le groupe — on n’aura pas à tout recréer le jour de l’agrément d’ouverture.
+        </p>
+      </section>
+    </div>
+    <footer class="page-foot">
+      <span>Groupe scolaire Les Étoiles de Bingerville · Bingerville / Adjamé</span>
+      <span>Support de rendez-vous · 22 août 2026 · 5 / 8</span>
+    </footer>
+  </article>
+
+  <!-- 6. Finances, services, RH -->
+  <article class="sheet">
+    <header class="page-head">
+      <div>
+        <p class="kicker">Direction · finances, campus, équipe</p>
+        <h2>L’argent, la grille, les agents</h2>
+        <p class="lead">Ce que la fondatrice veut pouvoir montrer : la scolarité rentre, la sortie est sûre, la paie est propre.</p>
+      </div>
+      <div class="brand">
+        <img src="logo-etoiles.png" alt="" />
+        <span>Les Étoiles</span>
+      </div>
+    </header>
+    <div class="page-body grid-3">
+      <section class="card">
+        <p class="tag">Finances</p>
+        <h3>Scolarité, caisse, cas sociaux</h3>
+        <ul>
+          <li><span class="dot"></span><span><strong>Frais</strong> — barème scolarité et cantine.</span></li>
+          <li><span class="dot"></span><span><strong>Caisse</strong> — encaissements du jour.</span></li>
+          <li><span class="dot"></span><span><strong>Comptabilité</strong> — trésorerie, comptes (espèces, Wave, Orange Money, banque), dépenses, factures fournisseurs, budget.</span></li>
+          <li><span class="dot"></span><span><strong>Cas sociaux</strong> — remise, montant fixe ou échéancier, suivi des familles.</span></li>
+        </ul>
+        <p style="margin-top:0.5rem; font-size:0.75rem; color:var(--muted)">Les familles voient leurs échéances. La direction voit qui a payé.</p>
+      </section>
+      <section class="card">
+        <p class="tag">Services du campus</p>
+        <h3>Bus, santé, objets, sortie</h3>
+        <ul>
+          <li><span class="dot"></span><span><strong>Transport</strong> — le minibus, les événements du jour.</span></li>
+          <li><span class="dot"></span><span><strong>Santé</strong> — notes infirmerie, visibles aussi côté parent.</span></li>
+          <li><span class="dot"></span><span><strong>Objets perdus</strong> — aussi sur le site public.</span></li>
+          <li><span class="dot"></span><span><strong>Sortie</strong> — génération des QR du jour pour les classes.</span></li>
+        </ul>
+        <p style="margin-top:0.5rem; font-size:0.75rem; color:var(--muted)">Le vigile valide. La direction génère. Le parent montre.</p>
+      </section>
+      <section class="card">
+        <p class="tag">Ressources humaines</p>
+        <h3>Du dossier agent à la fiche de paie</h3>
+        <ul>
+          <li><span class="dot"></span><span><strong>Personnel</strong> — enseignants, ATSEM, ménage, gardiens, secrétariat…</span></li>
+          <li><span class="dot"></span><span><strong>Congés</strong> à valider, <strong>présence</strong> du jour.</span></li>
+          <li><span class="dot"></span><span><strong>Avances</strong> sur salaire, <strong>évaluations</strong>.</span></li>
+          <li><span class="dot"></span><span><strong>Rubriques</strong> de paie, <strong>bulletin de paie PDF</strong> au logo Les Étoiles.</span></li>
+        </ul>
+        <p style="margin-top:0.5rem; font-size:0.75rem; color:var(--muted)">L’enseignant télécharge sa fiche. La direction lance la paie du mois.</p>
+      </section>
+    </div>
+    <footer class="page-foot">
+      <span>Groupe scolaire Les Étoiles de Bingerville · Bingerville / Adjamé</span>
+      <span>Support de rendez-vous · 22 août 2026 · 6 / 8</span>
+    </footer>
+  </article>
+
+  <!-- 7. Parcours démo + identifiants -->
+  <article class="sheet">
+    <header class="page-head">
+      <div>
+        <p class="kicker">Aujourd’hui · 5 minutes</p>
+        <h2>Le parcours à ouvrir ensemble</h2>
+        <p class="lead">Trois écrans suffisent pour convaincre : le parent, le vigile, la direction.</p>
+      </div>
+      <div class="brand">
+        <img src="logo-etoiles.png" alt="" />
+        <span>Les Étoiles</span>
+      </div>
+    </header>
+    <div class="page-body">
+      <div class="grid-3" style="margin-bottom:0.8rem">
+        <section class="card">
+          <div class="step">
+            <div class="step-n">1</div>
+            <div>
+              <p class="tag">Parent</p>
+              <h3>Ama, maternelle</h3>
+              <p style="margin-top:0.35rem; font-size:0.8rem; line-height:1.4; color:var(--muted)">
+                Ouvrir l’espace parents. Voir notes, bulletin PDF, devoirs.
+                Afficher le <strong>QR de sortie</strong> du jour.
+              </p>
+            </div>
+          </div>
+        </section>
+        <section class="card">
+          <div class="step">
+            <div class="step-n">2</div>
+            <div>
+              <p class="tag">Vigile</p>
+              <h3>Valider à la grille</h3>
+              <p style="margin-top:0.35rem; font-size:0.8rem; line-height:1.4; color:var(--muted)">
+                Connexion vigile. Saisir ou scanner
+                <span class="login">ETOILES-A7K2</span>.
+                Ama passe en « validé ».
+              </p>
+            </div>
+          </div>
+        </section>
+        <section class="card">
+          <div class="step">
+            <div class="step-n">3</div>
+            <div>
+              <p class="tag">Direction</p>
+              <h3>Inscription · bulletin · paie</h3>
+              <p style="margin-top:0.35rem; font-size:0.8rem; line-height:1.4; color:var(--muted)">
+                Fiche d’inscription (pièces, PDF).
+                Bulletin officiel. Fiche de paie d’un agent.
+              </p>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <section class="card">
+        <p class="tag">Identifiants de démonstration — à usage interne</p>
+        <h3>Elle peut tester elle-même</h3>
+        <div class="grid-2" style="margin-top:0.65rem; gap:0.65rem">
+          <p style="font-size:0.82rem; line-height:1.7">
+            <strong>Parent Ama</strong> (maternelle) · <span class="login">ETOILES-DEMO-001</span> / <span class="login">Parent2026!</span><br />
+            <strong>Parent Marc</strong> (primaire) · <span class="login">ETOILES-DEMO-002</span> / <span class="login">Parent2026!</span><br />
+            <strong>Enseignant</strong> · <span class="login">enseignant@lesetoiles.ci</span> / <span class="login">Enseignant2026!</span>
+          </p>
+          <p style="font-size:0.82rem; line-height:1.7">
+            <strong>Direction</strong> · <span class="login">admin</span> / <span class="login">Direction2026!</span><br />
+            <strong>Vigile</strong> · <span class="login">vigile</span> / <span class="login">Vigile2026!</span><br />
+            <strong>Codes grille</strong> · Ama <span class="login">ETOILES-A7K2</span> · Marc <span class="login">ETOILES-M3P9</span>
+          </p>
+        </div>
+        <p style="margin-top:0.55rem; font-size:0.75rem; color:var(--muted)">
+          Démonstration sur cet ordinateur aujourd’hui. Ces comptes serviront à la visite — ils seront retirés avant la mise en service réelle.
+        </p>
+      </section>
+    </div>
+    <footer class="page-foot">
+      <span>Groupe scolaire Les Étoiles de Bingerville · Bingerville / Adjamé</span>
+      <span>Support de rendez-vous · 22 août 2026 · 7 / 8</span>
+    </footer>
+  </article>
+
+  <!-- 8. Validation + honnêteté -->
+  <article class="sheet">
+    <header class="page-head">
+      <div>
+        <p class="kicker">Pour le rendez-vous</p>
+        <h2>Ce que nous validons ensemble aujourd’hui</h2>
+        <p class="lead">Le souffle reste : tout cela existe déjà. On cadre ensuite la mise en service, sans se tromper sur ce qui reste à brancher.</p>
+      </div>
+      <div class="brand">
+        <img src="logo-etoiles.png" alt="" />
+        <span>Les Étoiles</span>
+      </div>
+    </header>
+    <div class="page-body grid-2">
+      <section class="card">
+        <p class="tag">Décisions du jour</p>
+        <h3>Cinq points, pas une liste infinie</h3>
+        <ul class="check">
+          <li><span class="box"></span><span><strong>L’esprit</strong> — est-ce bien Les Étoiles (Adjamé-Bingerville), et non une duplicata d’une autre école ?</span></li>
+          <li><span class="box"></span><span><strong>La priorité rentrée</strong> — inscriptions ? sortie QR ? bulletins ? paiements ?</span></li>
+          <li><span class="box"></span><span><strong>Qui teste</strong> — secrétariat, un enseignant, le vigile, une famille de confiance.</span></li>
+          <li><span class="box"></span><span><strong>Les contenus</strong> — textes, tarifs, photos officielles à signer.</span></li>
+          <li><span class="box"></span><span><strong>La date cible</strong> — quand la version validée doit être en ligne.</span></li>
+        </ul>
+        <p style="margin-top:0.7rem; font-size:0.8rem; line-height:1.4; color:var(--muted)">
+          Ensuite, pour la mise en service : branchement du paiement réel, base durable, e-mails de l’école, retrait des comptes de démonstration.
+        </p>
+      </section>
+      <section class="honesty">
+        <p class="tag">En toute clarté</p>
+        <h3>Ce qui est prêt, ce qui reste à brancher</h3>
+        <ul>
+          <li><span class="dot"></span><span>La démonstration d’aujourd’hui est <strong>locale</strong>, sur cet ordinateur. Une copie du travail est aussi sur GitHub.</span></li>
+          <li><span class="dot"></span><span>Une adresse en ligne peut encore afficher une <strong>version plus ancienne</strong> tant que la mise en ligne n’est pas faite sur la bonne branche.</span></li>
+          <li><span class="dot"></span><span><strong>Paiements</strong> : Wave et Orange Money s’affichent. L’argent n’est pas encore encaissé pour de vrai.</span></li>
+          <li><span class="dot"></span><span>Les données sont d’<strong>exemple</strong>, pour la visite. Une base durable sera posée avant le go-live.</span></li>
+          <li><span class="dot"></span><span>Rien n’est « déjà en production école » tant que vous n’avez pas validé textes, tarifs et ouverture aux familles.</span></li>
+        </ul>
+        <p style="margin-top:0.7rem; font-size:0.82rem; line-height:1.4">
+          Ce document montre <strong>ce qui existe déjà</strong>.
+          La suite, nous la datons ensemble.
+        </p>
+      </section>
+    </div>
+    <footer class="page-foot">
+      <span>Groupe scolaire Les Étoiles de Bingerville · Bingerville / Adjamé · confidentiel fondatrice</span>
+      <span>Support de rendez-vous · 22 août 2026 · 8 / 8</span>
+    </footer>
+  </article>
+</body>
+</html>
