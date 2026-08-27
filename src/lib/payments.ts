@@ -36,6 +36,11 @@ export function paymentsDemoMode() {
   return process.env.PAYMENTS_DEMO_MODE === "true";
 }
 
+/** Prestataire configuré (clés .env) — l’intégration API reste à finaliser. */
+export function onlinePaymentsConnected() {
+  return paymentProviders.some((provider) => providerConfigured(provider));
+}
+
 export function formatFcfa(amount: number) {
   return new Intl.NumberFormat("fr-CI", {
     style: "currency",

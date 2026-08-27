@@ -22,8 +22,8 @@ export const school = {
     },
     {
       label: "Fixe",
-      display: "+225 07 06 06 96 67",
-      href: "tel:+2250706069667",
+      display: "À confirmer",
+      href: undefined,
       e164: "2250706069667",
     },
   ],

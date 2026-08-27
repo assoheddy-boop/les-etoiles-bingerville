@@ -22,9 +22,13 @@ export default function ContactPage() {
             <ul className="mt-4 space-y-2">
               {school.phones.map((phone) => (
                 <li key={phone.label}>
-                  <a href={phone.href} className="font-semibold text-green hover:underline">
-                    {phone.display}
-                  </a>
+                  {phone.href ? (
+                    <a href={phone.href} className="font-semibold text-green hover:underline">
+                      {phone.display}
+                    </a>
+                  ) : (
+                    <span className="font-semibold text-ink">{phone.display}</span>
+                  )}
                   <span className="text-muted"> — {phone.label}</span>
                 </li>
               ))}

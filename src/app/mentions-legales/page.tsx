@@ -50,11 +50,30 @@ export default function MentionsLegalesPage() {
             sauf mention contraire. Toute reproduction non autorisée est interdite.
           </p>
 
-          <h2 className="font-display text-2xl text-green-deep">Données personnelles</h2>
+          <h2 className="font-display text-2xl text-green-deep">Données personnelles et confidentialité</h2>
           <p>
-            Les informations collectées via les formulaires (inscription, contact) sont destinées
-            exclusivement à la gestion de la relation avec les familles et à l’administration de
-            l’établissement. Pour toute question, écrivez à {school.email}.
+            Les informations collectées via les formulaires (inscription, contact, messages) sont
+            traitées par {school.legalName} pour la gestion scolaire, la relation avec les familles
+            et l’administration de l’établissement (suivi des élèves, facturation, communication).
+            Elles ne sont pas vendues à des tiers.
+          </p>
+          <p>
+            Les données sont hébergées sur des serveurs sécurisés (Vercel). Les fichiers
+            administratifs persistants sont stockés dans un espace Blob privé lié au projet. Les
+            cookies de session permettent l’accès aux espaces parents, enseignants et administration ;
+            ils ne servent pas à du ciblage publicitaire.
+          </p>
+          <p>
+            Conformément au droit ivoirien et aux bonnes pratiques RGPD, vous pouvez demander
+            l’accès, la rectification ou la suppression de vos données en écrivant à{" "}
+            <a href={`mailto:${school.email}`} className="font-semibold text-green hover:underline">
+              {school.email}
+            </a>
+            . Une réponse est visée sous 30 jours.
+          </p>
+          <p>
+            Pour les mineurs, les données sont fournies par les parents ou représentants légaux.
+            Les photos d’élèves ne sont publiées sur ce site qu’avec l’accord de la direction.
           </p>
 
           <h2 className="font-display text-2xl text-green-deep">Crédits photographiques</h2>

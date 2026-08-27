@@ -13,10 +13,14 @@ export function PaymentCheckout({
   invoiceId,
   label,
   amountLabel,
+  paymentsOnline,
+  demoMode,
 }: {
   invoiceId: string;
   label: string;
   amountLabel: string;
+  paymentsOnline: boolean;
+  demoMode: boolean;
 }) {
   const router = useRouter();
   const [provider, setProvider] = useState<(typeof providers)[number]["id"]>("wave");
@@ -45,12 +49,32 @@ export function PaymentCheckout({
     setMessage(payload.message || "Prestataire non configuré.");
   }
 
+  if (!paymentsOnline && !demoMode) {
+    return (
+      <div className="space-y-5 rounded-3xl border border-line bg-white p-6">
+        <p className="rounded-2xl bg-terracotta-soft px-4 py-3 text-sm font-medium text-ink">
+          Paiement en ligne bientôt disponible — contactez le secrétariat pour régler cette échéance
+          (espèces, virement ou autre mode convenu avec l’école).
+        </p>
+        <div>
+          <h2 className="font-display text-2xl text-green-deep">{label}</h2>
+          <p className="text-muted">{amountLabel}</p>
+        </div>
+        <p className="text-sm text-muted">
+          Aucun débit en ligne est possible pour le moment. Le secrétariat confirmera le montant et les modalités.
+        </p>
+      </div>
+    );
+  }
+
   return (
     <div className="space-y-5 rounded-3xl border border-line bg-white p-6">
-      <div>
+      {demoMode ? (
         <p className="mb-3 rounded-2xl bg-paper-2 px-4 py-3 text-sm text-muted">
-          Paiement non branché — Wave, Orange Money et CinetPay sont affichés pour la démo. Aucun débit réel.
+          Mode démo local — Wave, Orange Money et CinetPay sont affichés pour les tests. Aucun débit réel.
         </p>
+      ) : null}
+      <div>
         <h2 className="font-display text-2xl text-green-deep">{label}</h2>
         <p className="text-muted">{amountLabel}</p>
       </div>
@@ -80,21 +104,24 @@ export function PaymentCheckout({
       >
         Continuer vers le paiement
       </button>
-      <button
-        type="button"
-        disabled={pending}
-        onClick={() => pay(true)}
-        className="w-full rounded-full border border-line px-5 py-3 text-sm font-medium"
-      >
-        Simuler un paiement (mode démo local uniquement)
-      </button>
+      {demoMode ? (
+        <button
+          type="button"
+          disabled={pending}
+          onClick={() => pay(true)}
+          className="w-full rounded-full border border-line px-5 py-3 text-sm font-medium"
+        >
+          Simuler un paiement (mode démo local uniquement)
+        </button>
+      ) : null}
       {message ? (
         <p className="rounded-2xl bg-terracotta-soft p-4 text-sm text-ink">{message}</p>
       ) : null}
-      <p className="text-xs text-muted">
-        TODO : brancher les clés Wave / Orange Money / CinetPay dans le fichier .env. Tant qu’elles
-        sont absentes, aucun débit réel n’a lieu.
-      </p>
+      {demoMode ? (
+        <p className="text-xs text-muted">
+          Les clés Wave / Orange Money / CinetPay doivent être renseignées dans .env pour un paiement réel.
+        </p>
+      ) : null}
     </div>
   );
 }

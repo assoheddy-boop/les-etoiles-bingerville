@@ -4,7 +4,7 @@ import { Container, PageHero } from "@/components/ui/Page";
 import { requireParent } from "@/lib/auth";
 import { invoiceOverlay } from "@/lib/ledger";
 import { invoicesForStudent, parentChildView, readSchoolLife } from "@/lib/school-life";
-import { formatFcfa } from "@/lib/payments";
+import { formatFcfa, onlinePaymentsConnected, paymentsDemoMode } from "@/lib/payments";
 
 export const dynamic = "force-dynamic";
 
@@ -26,14 +26,24 @@ export default async function InvoicePayPage({
     notFound();
   }
 
+  const paymentsOnline = onlinePaymentsConnected();
+  const demoMode = paymentsDemoMode();
+  const lead = paymentsOnline
+    ? "Choisissez un mode de paiement mobile."
+    : demoMode
+      ? "Interface de démonstration locale — aucun débit réel."
+      : "Paiement en ligne bientôt disponible — contactez le secrétariat pour régler cette échéance.";
+
   return (
     <>
-      <PageHero kicker="Règlement" title="Choisir un mode de paiement" lead="Interface de démonstration — aucun débit réel tant que le prestataire n’est pas branché." />
+      <PageHero kicker="Règlement" title="Choisir un mode de paiement" lead={lead} />
       <Container className="max-w-xl py-10">
         <PaymentCheckout
           invoiceId={invoice.id}
           label={`${invoice.label} — ${invoice.period}`}
           amountLabel={formatFcfa(invoice.amountFcfa)}
+          paymentsOnline={paymentsOnline}
+          demoMode={demoMode}
         />
       </Container>
     </>
