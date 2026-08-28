@@ -18,7 +18,7 @@ export function AdminFlash({ error, ok }: { error?: string; ok?: string }) {
       : error === "in-use"
         ? "Impossible : des élèves ou des cours y sont encore liés."
         : error === "duplicate"
-        ? "Cet identifiant existe déjà."
+        ? "Cet identifiant ou cet e-mail est déjà utilisé."
         : error === "matricule"
           ? "Ce matricule école est déjà utilisé."
           : error === "nationalMatricule"

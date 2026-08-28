@@ -14,6 +14,8 @@ import {
   type VigileSession,
 } from "./session";
 import type { StaffRole } from "./school-life-types";
+import type { PermissionId, PermissionLevel } from "./rbac";
+import { hasPermission } from "./rbac";
 
 export function staffRoleOf(session: AdminSession): StaffRole {
   return session.staffRole || "fondateur";
@@ -71,6 +73,19 @@ export async function requireAdmin(): Promise<AdminSession> {
   if (!session) redirect("/admin/connexion");
   return session;
 }
+
+export async function requireAdminPermission(
+  permission: PermissionId,
+  level: PermissionLevel = "read",
+): Promise<AdminSession> {
+  const session = await requireAdmin();
+  if (!hasPermission(session, permission, level)) {
+    redirect("/admin?error=forbidden");
+  }
+  return session;
+}
+
+export { hasPermission } from "./rbac";
 
 export async function getTeacherSession(): Promise<TeacherSession | null> {
   const jar = await cookies();

@@ -1,4 +1,5 @@
 import { SUPERADMIN_EMAIL } from "./demo-accounts";
+import type { EmployeeRoleId } from "./rbac";
 import type { StaffRole } from "./school-life-types";
 
 export type ParentSession = {
@@ -23,6 +24,9 @@ export type AdminSession = {
   canSwitchRole?: boolean;
   /** Présent uniquement si la session vient du cookie SuperAdmin (pas un fondateur). */
   isSuperAdmin?: boolean;
+  /** Compte employé persisté (gestion des employés). */
+  employeeId?: string;
+  employeeRole?: EmployeeRoleId;
 };
 
 export type SuperAdminSession = {
@@ -116,7 +120,18 @@ export async function readSessionCookie(value?: string | null): Promise<Session 
         data.staffRole === "directeur" || data.staffRole === "vie_scolaire" || data.staffRole === "fondateur"
           ? data.staffRole
           : "fondateur";
-      return { ...data, staffRole, isSuperAdmin: false };
+      const employeeRole =
+        typeof data.employeeRole === "string" &&
+        (data.employeeRole === "direction" ||
+          data.employeeRole === "secretariat" ||
+          data.employeeRole === "enseignant" ||
+          data.employeeRole === "surveillant" ||
+          data.employeeRole === "comptable" ||
+          data.employeeRole === "cantine")
+          ? data.employeeRole
+          : undefined;
+      const employeeId = typeof data.employeeId === "string" ? data.employeeId : undefined;
+      return { ...data, staffRole, isSuperAdmin: false, employeeRole, employeeId };
     }
     return data;
   } catch {

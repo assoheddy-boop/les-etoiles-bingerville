@@ -1,6 +1,7 @@
 import { isModuleEnabled, parentPortalAllowed } from "./module-control";
 import { NextResponse } from "next/server";
-import { getAdminSession, getParentSession, getTeacherSession, getVigileSession } from "./auth";
+import { getAdminSession, getParentSession, getTeacherSession, getVigileSession, hasPermission } from "./auth";
+import type { PermissionId, PermissionLevel } from "./rbac";
 import { PersistWriteError } from "./persist";
 import { readSchoolLife, teacherActorId, writeSchoolLife } from "./school-life";
 import type { SchoolLifeData } from "./school-life-types";
@@ -48,6 +49,22 @@ export async function withAdminMutate(
 ) {
   const session = await getAdminSession();
   return runMutate(request, fallback, "/admin/connexion", Boolean(session), mutator);
+}
+
+export async function withAdminPermissionMutate(
+  request: Request,
+  fallback: string,
+  permission: PermissionId,
+  level: PermissionLevel,
+  mutator: Mutator,
+) {
+  const session = await getAdminSession();
+  if (!session || !hasPermission(session, permission, level)) {
+    const url = new URL(fallback, request.url);
+    url.searchParams.set("error", "forbidden");
+    return NextResponse.redirect(url, 303);
+  }
+  return runMutate(request, fallback, "/admin/connexion", true, mutator);
 }
 
 export async function withTeacherMutate(

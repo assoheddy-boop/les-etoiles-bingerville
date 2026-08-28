@@ -208,6 +208,7 @@ export const adminConsoleNav: ConsoleGroup[] = [
     links: [
       { href: "/admin/etablissements", label: "Établissements" },
       { href: "/admin/annee-scolaire", label: "Année scolaire" },
+      { href: "/admin/employes", label: "Gestion des employés" },
       { href: "/admin/contenu", label: "Contenu" },
       { href: "/admin/actualites", label: "Actualités" },
       { href: "/admin/demandes", label: "Demandes" },

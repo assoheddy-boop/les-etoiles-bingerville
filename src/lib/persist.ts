@@ -18,6 +18,7 @@ import {
   bundledStudentPhotoUploadsDir,
   aiChatFile,
   cmsFile,
+  employeesFile,
   dataDir,
   homeworkUploadsDir,
   inboxFile,
@@ -27,7 +28,7 @@ import {
   studentPhotoUploadsDir,
 } from "./paths";
 
-export type JsonDocKey = "school-life" | "cms" | "inbox" | "ledger" | "ai-chat";
+export type JsonDocKey = "school-life" | "cms" | "inbox" | "ledger" | "ai-chat" | "employees";
 export type UploadKind = "homeworks" | "students" | "lost-items";
 
 const JSON_FILES: Record<JsonDocKey, string> = {
@@ -36,6 +37,7 @@ const JSON_FILES: Record<JsonDocKey, string> = {
   inbox: inboxFile,
   ledger: ledgerFile,
   "ai-chat": aiChatFile,
+  employees: employeesFile,
 };
 
 const BLOB_JSON: Record<JsonDocKey, string> = {
@@ -44,6 +46,7 @@ const BLOB_JSON: Record<JsonDocKey, string> = {
   inbox: "etoiles/inbox.json",
   ledger: "etoiles/ledger.json",
   "ai-chat": "etoiles/ai-chat.json",
+  employees: "etoiles/employees.json",
 };
 
 const LOCAL_UPLOAD_DIR: Record<UploadKind, string> = {

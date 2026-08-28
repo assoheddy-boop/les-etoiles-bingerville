@@ -1,9 +1,13 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
-/** Même nom que `VIGILE_COOKIE` / `SUPERADMIN_COOKIE` dans session.ts — pas d’import (Edge). */
+/** Même nom que `VIGILE_COOKIE` / `SUPERADMIN_COOKIE` / `ADMIN_COOKIE` dans session.ts — pas d’import (Edge). */
 const VIGILE_COOKIE = "etoiles_vigile";
 const SUPERADMIN_COOKIE = "etoiles_superadmin";
+const ADMIN_COOKIE = "etoiles_admin";
+
+/** Routes admin nécessitant la permission parametres (écriture). */
+const PARAMETRES_PREFIX = "/admin/employes";
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
@@ -14,6 +18,11 @@ export function middleware(request: NextRequest) {
   if (pathname.startsWith("/super-admin") && pathname !== "/super-admin/connexion") {
     if (!request.cookies.get(SUPERADMIN_COOKIE)?.value) {
       return NextResponse.redirect(new URL("/super-admin/connexion", request.url));
+    }
+  }
+  if (pathname.startsWith(PARAMETRES_PREFIX) && pathname !== "/admin/connexion") {
+    if (!request.cookies.get(ADMIN_COOKIE)?.value && !request.cookies.get(SUPERADMIN_COOKIE)?.value) {
+      return NextResponse.redirect(new URL("/admin/connexion", request.url));
     }
   }
   return NextResponse.next();

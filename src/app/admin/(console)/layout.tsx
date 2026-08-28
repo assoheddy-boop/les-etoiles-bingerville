@@ -3,6 +3,7 @@ import { ConsoleNav } from "@/components/layout/ConsoleNav";
 import { StaffRoleSwitcher } from "@/components/school/StaffRoleSwitcher";
 import { adminConsoleNavFor } from "@/lib/nav";
 import { filterNavByModules } from "@/lib/module-control";
+import { filterNavByRbac } from "@/lib/rbac";
 import { readSchoolLife } from "@/lib/school-life";
 import { computeAlerts, isTeacherControlEnabled, staffRoleLabels } from "@/lib/teacher-control";
 
@@ -13,10 +14,13 @@ export default async function AdminConsoleLayout({ children }: { children: React
   const enabled = isTeacherControlEnabled(data);
   const alertCount = enabled ? computeAlerts(data).length : 0;
   const bypass = Boolean(session.isSuperAdmin);
-  const groups = filterNavByModules(adminConsoleNavFor(enabled, alertCount, role === "fondateur"), data, {
-    role,
-    bypass,
-  });
+  const groups = filterNavByRbac(
+    filterNavByModules(adminConsoleNavFor(enabled, alertCount, role === "fondateur"), data, {
+      role,
+      bypass,
+    }),
+    session,
+  );
   const nav = session.isSuperAdmin
     ? [{ title: "SuperAdmin", links: [{ href: "/super-admin", label: "Console SuperAdmin" }] }, ...groups]
     : groups;
